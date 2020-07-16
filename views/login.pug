@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+    head
+        title Login - Covid Stores
+        include inc/head.pug
+
+    body
+        h3 Login
+            form(method="POST" action='/login/verification')
+                div.form-group
+                    label Email
+                    input(type="email" placeholder="Enter email address")
+                div.form-group
+                    label Password
+                    input(type="email" placeholder="Enter Password")
+                div.form-group
+                    a(href="password.html") Forgot Password
+                    br
+                    a(href="index.html") Login
+                   
+        include inc/footer.pug
