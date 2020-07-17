@@ -6,16 +6,20 @@ html(lang="en")
 
     body
         h3 Login
-            form(method="POST" action='/login/verification')
-                div.form-group
-                    label Email
-                    input(type="email" placeholder="Enter email address")
-                div.form-group
-                    label Password
-                    input(type="email" placeholder="Enter Password")
-                div.form-group
-                    a(href="password.html") Forgot Password
-                    br
-                    a(href="index.html") Login
+        form(method="POST" action='login/authentication')
+            div.form-group
+                label Email
+                input(type="email" placeholder="Enter email address" name="email")
+            div.form-group
+                label Password
+                input(type="password" placeholder="Enter Password" name="password")
+            div.form-group
+                input(type="checkbox" name="checkbox")
+                label Remember me
+            div.form-group
+                button(type="submit") Login
+                br
+                a(href="login/passwordRecovery") Forgot Password
+                
                    
         include inc/footer.pug
