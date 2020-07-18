@@ -7,8 +7,7 @@ router.use(express.static('public'));
 
 // gets and displays login page
 router.get('/', (req, res) => {
-    res.sendFile(__dirname + 'manager')
-    res.send('Welcome manager');
+    res.render('manager')
 });
 
 module.exports = router;

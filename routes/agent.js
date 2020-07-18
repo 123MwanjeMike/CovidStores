@@ -7,8 +7,7 @@ router.use(express.static('public'));
 
 // gets and displays login page
 router.get('/', (req, res) => {
-    res.sendFile(__dirname + 'agent')
-    res.send('Welcome agent');
+    res.render('agent')
 });
 
 module.exports = router;
