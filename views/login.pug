@@ -6,10 +6,11 @@ html(lang="en")
 
     body
         h3 Login
-        form(method="POST" action='login/authentication')
+        form(method="POST" action='/login')
+            p=message
             div.form-group
-                label Email
-                input(type="email" placeholder="Enter email address" name="email")
+                label Username
+                input(type="text" placeholder="Enter username" name="username")
             div.form-group
                 label Password
                 input(type="password" placeholder="Enter Password" name="password")
@@ -19,7 +20,7 @@ html(lang="en")
             div.form-group
                 button(type="submit") Login
                 br
-                a(href="login/passwordRecovery") Forgot Password
+                a(href="login/passwordrecovery") Forgot Password
                 
                    
         include inc/footer.pug
