@@ -7,7 +7,7 @@ router.use(express.static('public'));
 
 // gets and displays login page
 router.get('/', (req, res) => {
-    res.render('agent')
+    res.render('layout/agent', { pageTitle: 'Dashboard', template: 'agent' });
 });
 
 module.exports = router;
