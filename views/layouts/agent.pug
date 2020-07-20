@@ -6,15 +6,13 @@ html(lang="en")
     body.sb-nav-fixed
         //Navigation bar
         nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark
-            a.navbar-brand(href="index.html") Covid Stores
-            button#sidebarToggle.btn.btn-link.btn-sm.order-1.order-lg-0(href="#")
-                i.fas.fa-bars
+            a.navbar-brand(href="/agent") Covid Stores
             // Navbar Search
-            form.d-none.d-md-inline-block.form-inline.ml-auto.mr-0.mr-md-3.my-2.my-md-0
+            form.d-none.d-md-inline-block.form-inline.ml-auto.mr-0.mr-md-3.my-2.my-md-0(method="GET" action="/agent/search")
                 .input-group
-                    input.form-control(type="text" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2")
+                    input.form-control(type="text" placeholder="Search" name="search")
                     .input-group-append
-                        button.btn.btn-primary(type="button")
+                        button.btn.btn-primary(type="submit")
                             i.fas.fa-search
             // Navbar
             ul.navbar-nav.ml-auto.ml-md-0
@@ -22,10 +20,7 @@ html(lang="en")
                     a#userDropdown.nav-link.dropdown-toggle(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                         i.fas.fa-user.fa-fw
                     .dropdown-menu.dropdown-menu-right(aria-labelledby="userDropdown")
-                        a.dropdown-item(href="#") Settings
-                        a.dropdown-item(href="#") Activity Log
-                        .dropdown-divider
-                        a.dropdown-item(href="login.html") Logout
+                        a.dropdown-item(href="/login") Logout
         #layoutSidenav
             //Side bar navigation
             #layoutSidenav_nav
@@ -33,7 +28,7 @@ html(lang="en")
                     .sb-sidenav-menu
                         .nav
                             .sb-sidenav-menu-heading Core
-                            a.nav-link(href="index.html")
+                            a.nav-link(href="/agent")
                                 .sb-nav-link-icon
                                     i.fas.fa-tachometer-alt
                                 |                             Dashboard
@@ -52,36 +47,36 @@ html(lang="en")
                                             i.fas.fa-angle-down
                                     #pagesCollapseAuth.collapse(aria-labelledby="headingOne" data-parent="#sidenavAccordionPages")
                                         nav.sb-sidenav-menu-nested.nav
-                                            a.nav-link(href="agents/register.html") Register
-                                            a.nav-link(href="agents/record.html") Record
-                                            a.nav-link(href="agents/remove.html") Remove
+                                            a.nav-link(href="/agents/addPurchase") Add Purchase
+                                            a.nav-link(href="/agents/updatePurchase") Update Purchase
                                     a.nav-link.collapsed(href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError")
                                         | Installment Payments
                                         .sb-sidenav-collapse-arrow
                                             i.fas.fa-angle-down
                                     #pagesCollapseError.collapse(aria-labelledby="headingOne" data-parent="#sidenavAccordionPages")
                                         nav.sb-sidenav-menu-nested.nav
-                                            a.nav-link(href="items/add.html")
-                                                | Add
-                                                | Items
-                                            a.nav-link(href="items/LTPP.html")
-                                                | LTPP
-                                                | Items
-                                            a.nav-link(href="items/outOfStock.html")
-                                                | Out
-                                                | of Stock
-                            .sb-sidenav-menu-heading More
-                            a.nav-link(href="items.html")
+                                            a.nav-link(href="/agent/recordPayment")
+                                                | Record Payment
+                                            a.nav-link(href="/agent/updatePayement")
+                                                | Update payment
+
+                            .sb-sidenav-menu-heading View
+                            a.nav-link(href="/agent/balances")
                                 .sb-nav-link-icon
-                                    i.fas.fa-chart-area
+                                    i.fas.fa-table
+                                |                             Payment Balances
+                            a.nav-link(href="/agent/clients")
+                                .sb-nav-link-icon
+                                    i.fas.fa-table
                                 |                             Program Clients
-                            a.nav-link(href="items.html")
+                            .sb-sidenav-menu-heading More
+                            a.nav-link(href="/agent/calculator")
                                 .sb-nav-link-icon
-                                    i.fas.fa-chart-area
+                                    i.fas.fa-calculator
                                 |                             Installment Calculator
                     .sb-sidenav-footer
                         .small Logged in as:
-                        |                     Sales Agent
+                        |                     #{user}
 
             
             #layoutSidenav_content
