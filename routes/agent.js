@@ -6,8 +6,8 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.static('public'));
 
 // gets and displays login page
-router.get('/', (req, res) => {
-    res.render('layout/agent', { pageTitle: 'Dashboard', template: 'agent' });
+router.get('/', (req, res) => {    
+    res.render('agent', { pageTitle: 'Dashboard' });
 });
 
 module.exports = router;
