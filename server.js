@@ -5,7 +5,7 @@ const manager = require('./routes/manager');
 const app = express();
 
 app.set('view engine', 'pug');
-app.set('views', './views');
+app.set('views', './views/pages');
 
 app.use(express.static('public'));
 // importing routes
