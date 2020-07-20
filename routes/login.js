@@ -17,7 +17,7 @@ router.post('/', (req,res) => {
     //Enter here code to verify kind of admin this is
     console.log(req.body);
     if(req.body.username == 'manager' && req.body.password == '1234'){
-        res.redirect('/manager')
+        res.redirect('manager')
     }else if (req.body.username == 'agent' && req.body.password == '1234') {
         res.redirect('agent')
     } else {

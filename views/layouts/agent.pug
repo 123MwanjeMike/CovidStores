@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
     head
         title Manager - #{pageTitle}
-        include ../inc/head.pug
+        include ../includes/head.pug
     body.sb-nav-fixed
         //Navigation bar
         nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark
@@ -47,7 +47,7 @@ html(lang="en")
                             #collapsePages.collapse(aria-labelledby="headingTwo" data-parent="#sidenavAccordion")
                                 nav#sidenavAccordionPages.sb-sidenav-menu-nested.nav.accordion
                                     a.nav-link.collapsed(href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth")
-                                        | Sales Agents
+                                        | Purchases
                                         .sb-sidenav-collapse-arrow
                                             i.fas.fa-angle-down
                                     #pagesCollapseAuth.collapse(aria-labelledby="headingOne" data-parent="#sidenavAccordionPages")
@@ -56,7 +56,7 @@ html(lang="en")
                                             a.nav-link(href="agents/record.html") Record
                                             a.nav-link(href="agents/remove.html") Remove
                                     a.nav-link.collapsed(href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError")
-                                        | Items
+                                        | Installment Payments
                                         .sb-sidenav-collapse-arrow
                                             i.fas.fa-angle-down
                                     #pagesCollapseError.collapse(aria-labelledby="headingOne" data-parent="#sidenavAccordionPages")
@@ -70,37 +70,26 @@ html(lang="en")
                                             a.nav-link(href="items/outOfStock.html")
                                                 | Out
                                                 | of Stock
-                            .sb-sidenav-menu-heading Tables
-                            a.nav-link(href="charts.html")
+                            .sb-sidenav-menu-heading More
+                            a.nav-link(href="items.html")
                                 .sb-nav-link-icon
                                     i.fas.fa-chart-area
-                                |                             Items
-                            a.nav-link(href="tables.html")
+                                |                             Program Clients
+                            a.nav-link(href="items.html")
                                 .sb-nav-link-icon
-                                    i.fas.fa-table
-                                |                             Transactions
-                            a.nav-link(href="tables.html")
-                                .sb-nav-link-icon
-                                    i.fas.fa-table
-                                |                             Clients
-                            a.nav-link(href="tables.html")
-                                .sb-nav-link-icon
-                                    i.fas.fa-table
-                                |                             Sales Agents
+                                    i.fas.fa-chart-area
+                                |                             Installment Calculator
                     .sb-sidenav-footer
                         .small Logged in as:
-                        |                     Store Manager
+                        |                     Sales Agent
 
+            
             #layoutSidenav_content
 
                 // The page's main content
                 main
                     block content
 
-                include ../inc/footer.pug
-        script(src="/js/vendor/scripts.js")
-        script(src="/js/vendor/datatables-demo.js")
-        script(src="/js/vendor/jquery-3.5.1.min.js")
-        script(src="/js/vendor/bootstrap.bundle.min.js")
-        script(src="/js/vendor/jquery.dataTables.min.js")
-        script(src="/js/vendor/dataTables.bootstrap4.min.js")
+                include ../includes/footer.pug
+
+        include ../includes/scripts.pug
