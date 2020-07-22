@@ -1,28 +1,48 @@
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
+var validate = () => {
+    // Get dataset fields that need validation
+    var Firstname = document.getElementById('firstname');
+    var Lastname = document.getElementById('lastname');            
+    var Street = document.getElementById('street');
+    var City = document.getElementById('city');
+    var Biography = document.getElementById('biography');
+    var Image = document.getElementById('image');
+
+    // Function to check for any empty fields
+    var empty = (check) => {
+        let mine = check.value.length;
+        if(mine == ""){
+            check.style.border = "1px solid red";
+            alert("Please enter all fields!");
         }
-      }
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /* Exit the function: */
-      return;
     }
-  }
+    empty(Firstname);
+    empty(Lastname);
+    empty(Street);
+    empty(City);
+    empty(Biography);
+    empty(Image);
+
+    // Function to check is only characters are entered
+    var charactersOnly = (chars) => {
+        // The only accepted trend for letters in the text field sets
+        var letters = /^[a-zA-Z]+$/;
+
+        if (!chars.value.match(letters)) {
+            chars.style.border = "1px solid red";
+            alert("Enter only characters for First Name, Last Name, Street, and City ");
+        }
+    }
+    charactersOnly(firstname);
+    charactersOnly(lasstname);
+    charactersOnly(street);
+    charactersOnly(city);
+
+    // Checking that only image files are entered
+    var imagee = /\.(gif|jpe?g|tiff|png|webp|bmp)$/;
+
+    if (!Image.value.match(imagee)) {
+        Image.style.border = "1px solid red";
+        alert("Please enter a valid image file ");
+    }
+    
 }
-includeHTML();

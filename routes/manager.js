@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/registerAgent', (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: 'Register Agent', user: 'Store Manager'  });
+    res.render('./manager/registerAgent', { pageTitle: 'Register Agent', user: 'Store Manager'  });
 });
 
 router.get('/removeAgent', (req, res) => {

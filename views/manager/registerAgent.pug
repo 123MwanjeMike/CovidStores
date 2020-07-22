@@ -1,0 +1,48 @@
+extends ../layouts/manager.pug
+
+block content
+    #outer
+        h2 Sales Agent Registration:
+        #inner
+            div
+                form
+                    fieldset
+                        legend Bio-data
+                        .control
+                            label First name
+                            input#firstname(type="text" placeholder="First Name" name="fname")
+                        .control
+                            label Last name
+                            input#lastname(type="text" placeholder="Last Name" name="lname")
+                        .control
+                            label Date of Birth
+                            input#dob(type="date" name="dob")
+                        .control
+                            label Gender
+                            select(name="gender")
+                                option
+                                option
+                                    | Male
+                                option
+                                    | Female
+                        .control
+                            label Photo
+                            input#image(type="file" name="agentPhoto")
+                        .control
+                            label National ID Number
+                            input(type="text" placeholder="NIN" name="NIN")
+                            
+                    fieldset
+                        legend Contact
+                        .control
+                            label Telephone
+                            input(type="text" placeholder="Telephone" name="telephone")
+                        .control
+                            label Email
+                            input(type="email" placeholder="Email" name="email")
+                        .control
+                            label Address
+                            input(type="text" placeholder="Address" name="address")
+
+                    input#submit(type="submit" value="Submit" onclick="validate()")
+                
