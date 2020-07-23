@@ -1,7 +1,7 @@
 const express = require('express');
-require("./models/manager/registerAgent");
 const login = require('./routes/login');
 const agent = require('./routes/agent');
+require("./models/manager/user");
 const manager = require('./routes/manager');
 const app = express();
 //database

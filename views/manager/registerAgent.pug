@@ -7,6 +7,17 @@ block content
             div
                 form(method="POST" action="/manager/registerAgent")
                     fieldset
+                        legend Details
+                        .control
+                            label National ID
+                            input(type="text" placeholder="NIN" name="NIN")
+                        .control
+                            label Employee ID
+                            input(type="text" placeholder="Employee ID" name="empid")
+                        .control
+                            input(type="hidden" name="role" value="Sales Agent")
+                                    
+                    fieldset
                         legend Bio-data
                         .control
                             label First name
@@ -16,7 +27,7 @@ block content
                             input#lastname(type="text" placeholder="Last Name" name="lname")
                         .control
                             label Date of Birth
-                            input#dob(type="date" name="dob")
+                            input#dob(type="text" name="dob")
                         .control
                             label Gender
                             select(name="gender")
@@ -28,9 +39,6 @@ block content
                         .control
                             label Photo
                             input#image(type="file" name="agentPhoto")
-                        .control
-                            label National ID Number
-                            input(type="text" placeholder="NIN" name="NIN")
                             
                     fieldset
                         legend Contact
