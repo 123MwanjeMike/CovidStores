@@ -1,6 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+
+const router = express.Router();// Instantiating express application
+const registerAgent = mongoose.model('registerAgent');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.static('public'));
@@ -12,6 +15,21 @@ router.get('/', (req, res) => {
 
 router.get('/registerAgent', (req, res) => {
     res.render('./manager/registerAgent', { pageTitle: 'Register Agent', user: 'Store Manager'  });
+});
+
+router.post('/registerAgent', (req, res) => {
+    // if (errors.isEmpty()) {
+        const newAgent = new registerAgent(req.body);
+        newAgent.save()
+          .then(() => { res.send('Thank you for your registration!'); })
+          .catch((err) => {
+            console.log(err);
+            res.send('Sorry! Something went wrong.');
+          });
+    //   } else {
+        
+    //   }      
+    // res.render('./manager/registerAgent', { pageTitle: 'Register Agent', user: 'Store Manager'  });
 });
 
 router.get('/removeAgent', (req, res) => {
