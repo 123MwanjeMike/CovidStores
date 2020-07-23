@@ -31,7 +31,7 @@ router.post('/registerAgent', async (req, res) => {
 router.get('/agents', async (req, res) => {
     try {
         let items = await user.find();
-        res.render('manager/viewAgents', { users: items })
+        res.render('manager/viewAgents', {pageTitle: 'View Agents', user: 'Store Manager', users: items })
     } catch (err) {
         console.log(err)
         res.render(500);

@@ -5,41 +5,41 @@ block content
         .card-header
             i.fas.fa-table.mr-1
             |    Sales Agents
-        .card-body
-            .table-responsive
-                table#dataTable.table.table-bordered(width="100%" cellspacing="0")
-                    thead
-                        tr
-                            th Image                            
-                            th National ID
-                            th Employee ID
-                            th First Name
-                            th Last Name
-                            th Date of Birth
-                            th Gender
-                            th Telephone
-                            th Email
-                            th Address
-                            th
-                            th
-                    tbody
-                        each user in users
+
+        if users.length
+            .card-body
+                .table-responsive
+                    table#dataTable.table.table-bordered(width="100%" cellspacing="0")
+                        thead
                             tr
-                                td #{user.agentPhoto}
-                                td #{user.NIN}
-                                td #{user.empid}
-                                td #{user.fname}
-                                td #{user.lname}
-                                td #{user.dob}
-                                td #{user.gender}
-                                td #{user.telephone}
-                                td #{user.email}
-                                td #{user.address}
-                                td
-                                    form(method="post" action='/manager/updateAgent')
-                                        input(type="hidden" placeholder="" name="id", value=user._id)
-                                        button.btn.btn-dark.btn-block(type="submit") Edit
-                                td
-                                    form(method="post" action='/manager/removeAgent')
-                                        input(type="hidden" placeholder="" name="id", value=user._id)
-                                        button.btn.btn-dark.btn-block(type="submit") Delete
+                                th Image                            
+                                th National ID
+                                th Employee ID
+                                th First Name
+                                th Last Name
+                                th Date of Birth
+                                th Gender
+                                th Telephone
+                                th Email
+                                th Address
+                        tbody
+                            each user in users
+                                tr
+                                    td #{user.agentPhoto}
+                                    td #{user.NIN}
+                                    td #{user.empid}
+                                    td #{user.fname}
+                                    td #{user.lname}
+                                    td #{user.dob}
+                                    td #{user.gender}
+                                    td #{user.telephone}
+                                    td #{user.email}
+                                    td #{user.address}
+                                    td
+                                        form(method="post" action='/manager/updateAgent')
+                                            input(type="hidden" placeholder="" name="id", value=user._id)
+                                            button(type="submit") Edit
+                                    td
+                                        form(method="post" action='/manager/removeAgent')
+                                            input(type="hidden" placeholder="" name="id", value=user._id)
+                                            button(type="submit") Delete
