@@ -30,10 +30,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    agentPhoto: {
-        type: String,
-        trim: true,
-    },
     NIN: {
         type: String,
         trim: true,
@@ -52,4 +48,4 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('users', userSchema);

@@ -6,13 +6,11 @@ block content
             i.fas.fa-table.mr-1
             |    Sales Agents
 
-        if users.length
-            .card-body
+        .card-body
                 .table-responsive
                     table#dataTable.table.table-bordered(width="100%" cellspacing="0")
                         thead
-                            tr
-                                th Image                            
+                            tr                     
                                 th National ID
                                 th Employee ID
                                 th First Name
@@ -23,23 +21,24 @@ block content
                                 th Email
                                 th Address
                         tbody
-                            each user in users
+                            each agent in users
                                 tr
-                                    td #{user.agentPhoto}
-                                    td #{user.NIN}
-                                    td #{user.empid}
-                                    td #{user.fname}
-                                    td #{user.lname}
-                                    td #{user.dob}
-                                    td #{user.gender}
-                                    td #{user.telephone}
-                                    td #{user.email}
-                                    td #{user.address}
+                                    td #{agent.NIN}
+                                    td #{agent.empid}
+                                    td #{agent.fname}
+                                    td #{agent.lname}
+                                    td #{agent.dob}
+                                    td #{agent.gender}
+                                    td #{agent.telephone}
+                                    td #{agent.email}
+                                    td #{agent.address}
                                     td
-                                        form(method="post" action='/manager/updateAgent')
-                                            input(type="hidden" placeholder="" name="id", value=user._id)
-                                            button(type="submit") Edit
+                                        form(method="get" action='/manager/updateAgent')
+                                            input(type="hidden" placeholder="" name="id", value=agent._id)
+                                            button(type="submit")
+                                                i.fas.fa-edit
                                     td
                                         form(method="post" action='/manager/removeAgent')
-                                            input(type="hidden" placeholder="" name="id", value=user._id)
-                                            button(type="submit") Delete
+                                            input(type="hidden" placeholder="" name="id", value=agent._id)
+                                            button(type="submit")
+                                                i.fas.fa-trash
