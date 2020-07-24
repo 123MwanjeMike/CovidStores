@@ -2,8 +2,10 @@ const express = require('express');
 const login = require('./routes/login');
 const agent = require('./routes/agent');
 require("./models/manager/user");
+require("./models/manager/item");
 const manager = require('./routes/manager');
 const app = express();
+
 //database
 require('dotenv').config();
 const mongoose = require('mongoose');

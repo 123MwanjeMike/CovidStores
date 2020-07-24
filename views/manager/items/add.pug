@@ -1,0 +1,53 @@
+extends ../layout.pug
+
+block content
+    #outer
+        h2 Add LTPP item:
+        #inner
+            div
+                form(method="POST" action="/manager/addItems")
+                    fieldset
+                        legend Details
+                        .control
+                            label National ID
+                            input(type="text" placeholder="NIN" name="NIN")
+                        .control
+                            label Employee ID
+                            input(type="text" placeholder="Employee ID" name="empid")
+                        .control
+                            input(type="hidden" name="role" value="Sales Agent")
+                                    
+                    fieldset
+                        legend Bio-data
+                        .control
+                            label First name
+                            input#firstname(type="text" placeholder="First Name" name="fname")
+                        .control
+                            label Last name
+                            input#lastname(type="text" placeholder="Last Name" name="lname")
+                        .control
+                            label Date of Birth
+                            input#dob(type="date" name="dob")
+                        .control
+                            label Gender
+                            select(name="gender")
+                                option
+                                option
+                                    | Male
+                                option
+                                    | Female
+
+                    fieldset
+                        legend Contact
+                        .control
+                            label Telephone
+                            input(type="text" placeholder="Telephone" name="telephone")
+                        .control
+                            label Email
+                            input(type="email" placeholder="Email" name="email")
+                        .control
+                            label Address
+                            input(type="text" placeholder="Address" name="address")
+
+                    input#submit(type="submit" value="Submit" onclick="validate()")
+                
