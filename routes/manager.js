@@ -125,9 +125,10 @@ router.post('/updateItem', async (req, res) => {
             { _id: req.body.id },
             {
                 $set: {
-                    NIN: req.body.NIN, empid: req.body.empid,
-                    fname: req.body.fname, lname: req.body.lname, dob: req.body.dob, gender: req.body.gender,
-                    telephone: req.body.telephone, email: req.body.email, address: req.body.address
+                    name: req.body.name, make: req.body.make, DOE: req.body.DOE, category: req.body.category,
+                    serialNo: req.body.serialNo, price: req.body.price, initialPay: req.body.initialPay,
+                    payInterval: req.body.payInterval, color: req.body.color, description: req.body.description,
+                    numberInStock: req.body.numberInStock, photo: req.body.photo
                 }
             }
         )

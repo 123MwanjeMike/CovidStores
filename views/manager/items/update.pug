@@ -2,53 +2,61 @@ extends ../layout.pug
 
 block content
     #outer
-        h2 Edit LTPP Item details:
+        h2 Update LTPP item:
         #inner
-            div 
+            div
                 each detail in LTPP
                     form(method="POST" action="/manager/updateItem")
                         fieldset
-                            legend Details
+                            legend Product
                             .control
-                                label National ID
-                                input(type="text" placeholder="NIN" name="NIN" value=detail.NIN)
+                                label Image
+                                input(type="file" name="photo" value=detail.photo)
                             .control
-                                label Employee ID
-                                input(type="text" placeholder="Employee ID" name="empid" value=detail.empid)
+                                label Name
+                                input(type="text" placeholder="Name" name="name" value=detail.name)
                             .control
-                                input(type="hidden" name="role" value="Sales Agent")
-                                        
-                        fieldset
-                            legend Bio-data
+                                label Make
+                                input(type="text" placeholder="Make" name="make" value=detail.make)
                             .control
-                                label First name
-                                input#firstname(type="text" placeholder="First Name" name="fname" value=detail.fname)
+                                label Serial Number
+                                input(type="text" placeholder="Serial Number" name="serialNo" value=detail.serialNo)
                             .control
-                                label Last name
-                                input#lastname(type="text" placeholder="Last Name" name="lname" value=detail.lname)
+                                label Color
+                                input(type="text" placeholder="Color" name="color" value=detail.color)
                             .control
-                                label Date of Birth
-                                input#dob(type="date" name="dob" value=detail.dob)
+                                label Description
+                                textarea(placeholder="Enter product Description" name="description" value=detail.description, cols="40", rows="2")
                             .control
-                                label Gender
-                                select(name="gender")
+                                label Category
+                                select(name="category")
+                                    option Select Category
                                     option
+                                        | Furniture
                                     option
-                                        | Male
+                                        | Fitness Kits and Machinery
                                     option
-                                        | Female
+                                        | TV Sets
+                                    option
+                                        | Home Theaters
 
                         fieldset
-                            legend Contact
+                            legend Details
                             .control
-                                label Telephone
-                                input(type="text" placeholder="Telephone" name="telephone" value=detail.telephone)
+                                label Date of Entry
+                                input(type="date" name="DOE" value=detail.DOE)
                             .control
-                                label Email
-                                input(type="email" placeholder="Email" name="email" value=detail.email)
+                                label Number in Stock
+                                input(type="number" placeholder="Number in Stock" name="numberInStock" value=detail.numberInStock)
                             .control
-                                label Address
-                                input(type="text" placeholder="Address" name="address" value=detail.address)
+                                label Price
+                                input(type="text" placeholder="Price" name="price" value=detail.price)
+                            .control
+                                label Initial Pay
+                                input(type="text" placeholder="Initial Pay" name="initialPay" value=detail.initialPay)
+                            .control
+                                label Pay Interval
+                                input(type="text" placeholder="Interval" name="payInterval" value=detail.payInterval)
 
                         input(type="hidden" placeholder="" name="id", value=detail._id)
                         input#submit(type="submit" value="Update" onclick="validate()")

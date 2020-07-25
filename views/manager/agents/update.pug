@@ -31,8 +31,8 @@ block content
                                 input#dob(type="date" name="dob" value=detail.dob)
                             .control
                                 label Gender
-                                select(name="gender")
-                                    option
+                                input(list="gender" placeholder="Gender" name="gender" value=detail.gender)
+                                datalist(id="gender")
                                     option
                                         | Male
                                     option

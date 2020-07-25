@@ -1,8 +1,8 @@
 const express = require('express');
 const login = require('./routes/login');
 const agent = require('./routes/agent');
-require("./models/manager/user");
-require("./models/manager/item");
+require("./models/user");
+require("./models/item");
 const manager = require('./routes/manager');
 const app = express();
 
@@ -37,6 +37,10 @@ mongoose.connect(process.env.DATABASE, {
 
 app.get('/', (req, res) => {
     res.render('index', { message: 'This is a message to render from server.js'});
+});
+
+app.get('/test', (req, res) => {
+    res.sendFile(__dirname + '/views/index.html')
 });
 
 app.get('*', (req,res) => {

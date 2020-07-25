@@ -11,27 +11,35 @@ block content
                     table#dataTable.table.table-bordered(width="100%" cellspacing="0")
                         thead
                             tr                     
-                                th National ID
-                                th Employee ID
-                                th First Name
-                                th Last Name
-                                th Date of Birth
-                                th Gender
-                                th Telephone
-                                th Email
-                                th Address
+                                th Photo
+                                th Name
+                                th Make
+                                th Serial Number
+                                th Color
+                                th Description
+                                th Category
+                                th Date of Entry
+                                th Number in Stock
+                                th Price
+                                th Initial Pay
+                                th Pay Interval
+                                th
+                                th
                         tbody
                             each item in LTPP
                                 tr
-                                    td #{item.NIN}
-                                    td #{item.empid}
-                                    td #{item.fname}
-                                    td #{item.lname}
-                                    td #{item.dob}
-                                    td #{item.gender}
-                                    td #{item.telephone}
-                                    td #{item.email}
-                                    td #{item.address}
+                                    td #{item.photo}
+                                    td #{item.name}
+                                    td #{item.make}
+                                    td #{item.serialNo}
+                                    td #{item.color}
+                                    td #{item.description}
+                                    td #{item.category}
+                                    td #{item.DOE}
+                                    td #{item.numberInStock}
+                                    td #{item.price}
+                                    td #{item.initialPay}
+                                    td #{item.payInterval}
                                     td
                                         form(method="get" action='/manager/updateItem')
                                             input(type="hidden" placeholder="" name="id", value=item._id)
