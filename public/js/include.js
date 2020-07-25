@@ -1,7 +1,8 @@
+// Validating user input
 var validate = () => {
     // Get dataset fields that need validation
     var Firstname = document.getElementById('firstname');
-    var Lastname = document.getElementById('lastname');            
+    var Lastname = document.getElementById('lastname');
     var Street = document.getElementById('street');
     var City = document.getElementById('city');
     var Biography = document.getElementById('biography');
@@ -10,7 +11,7 @@ var validate = () => {
     // Function to check for any empty fields
     var empty = (check) => {
         let mine = check.value.length;
-        if(mine == ""){
+        if (mine == "") {
             check.style.border = "1px solid red";
             alert("Please enter all fields!");
         }
@@ -44,5 +45,4 @@ var validate = () => {
         Image.style.border = "1px solid red";
         alert("Please enter a valid image file ");
     }
-    
 }
