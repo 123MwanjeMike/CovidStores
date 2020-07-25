@@ -1,48 +1,52 @@
 const mongoose = require('mongoose');
 
 //Creating schema for registerAgent
-const itemSchema = new mongoose.Schema({
-    NIN: {
+const itemSchema = new mongoose.Schema({    
+    photo: {
         type: String,
         trim: true,
     },
-    empid: {
+    name: {
         type: String,
         trim: true,
     },
-    role: {
+    make: {
         type: String,
         trim: true,
     },
-    fname: {
+    serialNo: {
         type: String,
         trim: true,
     },
-    lname: {
+    color: {
         type: String,
         trim: true,
     },
-    dob: {
+    description: {
         type: String,
         trim: true,
     },
-    gender: {
+    category: {
         type: String,
         trim: true,
     },
-    NIN: {
+    DOE: {
         type: String,
         trim: true,
     },
-    telephone: {
+    numberInStock: {
         type: String,
         trim: true,
     },
-    email: {
+    price: {
         type: String,
         trim: true,
     },
-    address: {
+    initialPay: {
+        type: String,
+        trim: true,
+    },
+    payInterval: {
         type: String,
         trim: true,
     },

@@ -7,47 +7,55 @@ block content
             div
                 form(method="POST" action="/manager/addItems")
                     fieldset
-                        legend Details
+                        legend Product
                         .control
-                            label National ID
-                            input(type="text" placeholder="NIN" name="NIN")
+                            label Image
+                            input(type="file" name="photo")
                         .control
-                            label Employee ID
-                            input(type="text" placeholder="Employee ID" name="empid")
+                            label Name
+                            input(type="text" placeholder="Name" name="name")
                         .control
-                            input(type="hidden" name="role" value="Sales Agent")
-                                    
-                    fieldset
-                        legend Bio-data
+                            label Make
+                            input(type="text" placeholder="Make" name="make")
                         .control
-                            label First name
-                            input#firstname(type="text" placeholder="First Name" name="fname")
+                            label Serial Number
+                            input(type="text" placeholder="Serial Number" name="serialNo")
                         .control
-                            label Last name
-                            input#lastname(type="text" placeholder="Last Name" name="lname")
+                            label Color
+                            input(type="text" placeholder="Color" name="color")
                         .control
-                            label Date of Birth
-                            input#dob(type="date" name="dob")
+                            label Description
+                            textarea(placeholder="Enter product Description" name="description", cols="40", rows="2")
                         .control
-                            label Gender
-                            select(name="gender")
+                            label Category
+                            select(name="category")
+                                option Select Category
                                 option
+                                    | Furniture
                                 option
-                                    | Male
+                                    | Fitness Kits and Machinery
                                 option
-                                    | Female
+                                    | TV Sets
+                                option
+                                    | Home Theaters
 
                     fieldset
-                        legend Contact
+                        legend Details
                         .control
-                            label Telephone
-                            input(type="text" placeholder="Telephone" name="telephone")
+                            label Date of Entry
+                            input(type="date" name="DOE")
                         .control
-                            label Email
-                            input(type="email" placeholder="Email" name="email")
+                            label Number in Stock
+                            input(type="number" placeholder="Number in Stock" name="numberInStock")
                         .control
-                            label Address
-                            input(type="text" placeholder="Address" name="address")
+                            label Price
+                            input(type="text" placeholder="Price" name="price")
+                        .control
+                            label Initial Pay
+                            input(type="text" placeholder="Initial Pay" name="initialPay")
+                        .control
+                            label Pay Interval
+                            input(type="text" placeholder="Interval" name="payInterval")
 
                     input#submit(type="submit" value="Submit" onclick="validate()")
                 
