@@ -1,10 +1,6 @@
-doctype html
-html(lang='en')
-    head
-        title Page not found
-    body
-        h1 404
-        p
-            b Sorry, resource was not found
-        
-        include includes/footer.pug
+extends layout.pug
+
+block content
+    h1 404
+    p
+        b Sorry, resource was not found

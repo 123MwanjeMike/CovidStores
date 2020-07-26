@@ -1,8 +1,8 @@
 const express = require('express');
-const login = require('./routes/login');
-const agent = require('./routes/agent');
 require("./models/user");
 require("./models/item");
+const index = require('./routes/index');
+const agent = require('./routes/agent');
 const manager = require('./routes/manager');
 const app = express();
 
@@ -15,7 +15,7 @@ app.set('views', './views');
 
 app.use(express.static('public'));
 // importing routes
-app.use('/login', login);
+app.use('/', index);
 app.use('/agent', agent);
 app.use('/manager', manager);
 
@@ -35,19 +35,11 @@ mongoose.connect(process.env.DATABASE, {
     });
 
 
-app.get('/', (req, res) => {
-    res.render('index', { message: 'This is a message to render from server.js'});
-});
-
-app.get('/test', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html')
-});
-
 app.get('*', (req,res) => {
     res.render('404')
 });
 
 // Listening for requests: the server!
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log(`listening on port 3000`)
 });
