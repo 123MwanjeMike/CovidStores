@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-
 * {
     box-sizing: border-box;
-    font-family: Raleway; 
+    font-family: Raleway;
     color: #555;
     list-style: none;
     text-decoration: none;
 }
 
 html, body {
-    margin: 0;
+    margin: 0px;
     padding: 0;
 }
 
@@ -32,6 +30,7 @@ html, body {
 }
 
 .main-nav {
+    margin-top: -1%;
     text-align: center;
     font-size: 1.1em;
     font-weight: lighter;
@@ -41,9 +40,10 @@ html, body {
 .main-nav li {
     padding: 0 5%;
 }
+
 .main-header {
     background-color: rgb(226, 91, 50);
-    background-blend-mode: multiply; 
+    background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
     min-height: 25vh;
@@ -90,10 +90,22 @@ html, body {
     border-radius: 50%;
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+section {
+    padding-bottom: 5rem;
+}
+
 .main-footer {
     background-color: #212529;
     color: #fff;
     padding: .25em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .main-footer-container {
@@ -105,6 +117,7 @@ html, body {
     flex-grow: 1;
     text-align: end;
 }
+
 .main-footer-container .fa {
     color: #fff;
     height: 30px;
@@ -118,7 +131,7 @@ html, body {
 .btn {
     text-align: center;
     vertical-align: middle;
-    padding: .67em; 
+    padding: .67em;
     cursor: pointer;
 }
 
@@ -150,7 +163,7 @@ html, body {
 }
 
 .tour-row {
-    border-bottom: 1px solid #000; 
+    border-bottom: 1px solid #000;
     padding: 1em;
     margin: 1em;
 }
@@ -251,7 +264,8 @@ html, body {
 
 .cart-item-image {
     width: 75px;
-    height: 75px;;
+    height: 75px;
+    ;
     border-radius: 10px;
     margin: .5em;
 }
