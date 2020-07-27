@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');//Requiring mongoose
 const bodyParser = require('body-parser');
 
-const router = express.Router();// Instantiating express application
+const router = express.Router();
 const users = mongoose.model('users');
 const LTPP = mongoose.model('LTPP');
 
@@ -26,8 +26,8 @@ router.post('/registerAgent', async (req, res) => {
         await newAgent.save();
         res.redirect('/manager/agents');
     } catch (error) {
+        res.render('500');
         console.log(err);
-        res.render('500')
     };
 });
 // Fetching data from users collection for display on agent list
@@ -36,8 +36,8 @@ router.get('/agents', async (req, res) => {
         let myAgents = await users.find();
         res.render('manager/agents/view', { pageTitle: 'Agents', user: 'Store Manager', users: myAgents })
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     };
 });
 // Working on edit agent details request
@@ -46,8 +46,8 @@ router.get('/updateAgent', async (req, res) => {
         let agentDetails = await users.find({ _id: req.query.id })
         res.render('manager/agents/update', { pageTitle: 'Update Agents', user: 'Store Manager', agent: agentDetails })
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     }
 });
 // Updating agent information in database
@@ -59,13 +59,13 @@ router.post('/updateAgent', async (req, res) => {
                 $set: {
                     NIN: req.body.NIN, empid: req.body.empid,
                     fname: req.body.fname, lname: req.body.lname, dob: req.body.dob, gender: req.body.gender,
-                    telephone: req.body.telephone, email: req.body.email, address: req.body.address
+                    password: req.body.password
                 }
             }
         )
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     }
     res.redirect('/manager/agents');
 });
@@ -75,12 +75,11 @@ router.post('/removeAgent', async (req, res) => {
         await users.deleteOne({ _id: req.body.id })
         res.redirect('/manager/agents');
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     }
 });
-//////////////////// END OF WORKING WITH AGENTS ////////////////////////
-
+//////////////////// END OF WORKING WITH AGENTS //////////////////////////
 
 //////////////////// WORKING WITH ITEMS FOR THE SYSTEM ///////////////////
 // Handling add item request
@@ -94,8 +93,8 @@ router.post('/addItems', async (req, res) => {
         await newItem.save();
         res.redirect('/manager/items');
     } catch (error) {
+        res.render(500);
         console.log(err);
-        res.render('500')
     };
 });
 // Viewing LTPP items in the database
@@ -104,8 +103,8 @@ router.get('/items', async (req, res) => {
         let items = await LTPP.find();
         res.render('manager/items/view', { pageTitle: 'Items', user: 'Store Manager', LTPP: items })
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     };
 });
 // Working on the edit LTPP product request
@@ -114,8 +113,8 @@ router.get('/updateItem', async (req, res) => {
         let itemDetails = await LTPP.find({ _id: req.query.id })
         res.render('manager/items/update', { pageTitle: 'Update Items', user: 'Store Manager', LTPP: itemDetails })
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     }
 });
 // Updating Item details in the database
@@ -133,8 +132,8 @@ router.post('/updateItem', async (req, res) => {
             }
         )
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     }
     res.redirect('/manager/items');
 });
@@ -144,8 +143,8 @@ router.post('/removeItem', async (req, res) => {
         await LTPP.deleteOne({ _id: req.body.id })
         res.redirect('/manager/items');
     } catch (err) {
-        console.log(err)
         res.render(500);
+        console.log(err);
     }
 });
 //////////////////// END OF WORKING WITH ITEMS ////////////////////////

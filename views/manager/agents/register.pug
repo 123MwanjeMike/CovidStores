@@ -7,13 +7,16 @@ block content
             div
                 form(method="POST" action="/manager/registerAgent")
                     fieldset
-                        legend Details
+                        legend Credentials
                         .control
                             label National ID
                             input(type="text" placeholder="NIN" name="NIN")
                         .control
                             label Employee ID
                             input(type="text" placeholder="Employee ID" name="empid")
+                        .control
+                            label Password
+                            input(type="password" placeholder="Password" name="password")
                         .control
                             input(type="hidden" name="role" value="Sales Agent")
                                     
@@ -30,24 +33,12 @@ block content
                             input#dob(type="date" name="dob")
                         .control
                             label Gender
-                            select(name="gender")
-                                option Select Gender
+                            input(list="gender" Placeholder="Gender" name="gender")
+                            datalist(id="gender")
                                 option
                                     | Male
                                 option
                                     | Female
 
-                    fieldset
-                        legend Contact
-                        .control
-                            label Telephone
-                            input(type="text" placeholder="Telephone" name="telephone")
-                        .control
-                            label Email
-                            input(type="email" placeholder="Email" name="email")
-                        .control
-                            label Address
-                            input(type="text" placeholder="Address" name="address")
-
-                    input#submit(type="submit" value="Submit" onclick="validate()")
+                    input#submit(type="submit" value="Register" onclick="validate()")
                 

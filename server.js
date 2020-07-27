@@ -13,17 +13,18 @@ const mongoose = require('mongoose');
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+// Serving my static files
 app.use(express.static('public'));
-// importing routes
+// Serving my routes
 app.use('/', index);
 app.use('/agent', agent);
 app.use('/manager', manager);
 
-
 //Making database connection to covidStores
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true,
   });
   
   mongoose.connection
@@ -40,6 +41,7 @@ app.get('*', (req,res) => {
 });
 
 // Listening for requests: the server!
-app.listen(3001, () => {
-    console.log(`listening on port 3000`)
+const port = 3000
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
 });

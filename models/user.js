@@ -1,14 +1,21 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 //Creating schema for registerAgent
 const userSchema = new mongoose.Schema({
     NIN: {
         type: String,
         trim: true,
+        required: true,
     },
     empid: {
         type: String,
         trim: true,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
     },
     role: {
         type: String,
@@ -17,6 +24,7 @@ const userSchema = new mongoose.Schema({
     fname: {
         type: String,
         trim: true,
+        required: true,
     },
     lname: {
         type: String,
@@ -30,22 +38,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    NIN: {
-        type: String,
-        trim: true,
-    },
-    telephone: {
-        type: String,
-        trim: true,
-    },
-    email: {
-        type: String,
-        trim: true,
-    },
-    address: {
-        type: String,
-        trim: true,
-    },
 });
 
+userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('users', userSchema);
