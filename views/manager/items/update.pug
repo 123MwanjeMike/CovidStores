@@ -26,11 +26,11 @@ block content
                                 input(type="text" placeholder="Color" name="color" value=detail.color)
                             .control
                                 label Description
-                                textarea(placeholder="Enter product Description" name="description" value=detail.description, cols="40", rows="2")
+                                textarea(placeholder="Enter product Description" name="description", cols="40", rows="2")=detail.description
                             .control
                                 label Category
-                                select(name="category")
-                                    option Select Category
+                                input(list="categories" type="text" name="category" value=detail.category)
+                                datalist(id="categories")
                                     option
                                         | Furniture
                                     option

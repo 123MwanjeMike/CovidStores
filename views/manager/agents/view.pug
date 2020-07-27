@@ -15,11 +15,11 @@ block content
                                 th Employee ID
                                 th First Name
                                 th Last Name
+                                th Role
                                 th Date of Birth
                                 th Gender
-                                th Telephone
-                                th Email
-                                th Address
+                                th Password
+                                
                         tbody
                             each agent in users
                                 tr
@@ -27,11 +27,10 @@ block content
                                     td #{agent.empid}
                                     td #{agent.fname}
                                     td #{agent.lname}
+                                    td #{agent.role}
                                     td #{agent.dob}
                                     td #{agent.gender}
-                                    td #{agent.telephone}
-                                    td #{agent.email}
-                                    td #{agent.address}
+                                    td #{agent.password}
                                     td
                                         form(method="get" action='/manager/updateAgent')
                                             input(type="hidden" placeholder="" name="id", value=agent._id)
