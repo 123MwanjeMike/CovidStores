@@ -5,7 +5,7 @@ block content
     .shop-items
         each item in category
             .shop-item
-                a(href="")
+                a(href='/product?name='+item.name+'&id='+item._id)
                     img.shop-item-image(src="images/bike.jpg" )
                 span.shop-item-title
                 .shop-item-details
