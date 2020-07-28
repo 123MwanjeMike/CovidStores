@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 require("./models/user");
 require("./models/item");
 const index = require('./routes/index');
@@ -25,23 +26,23 @@ mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-  });
-  
-  mongoose.connection
+});
+
+mongoose.connection
     .on('open', () => {
-      console.log('Mongoose connection open');
+        console.log('Mongoose connection open');
     })
     .on('error', (err) => {
-      console.log(`Connection error: ${err.message}`);
+        console.log(`Connection error: ${err.message}`);
     });
 
-
-app.get('*', (req,res) => {
+    
+app.get('*', (req, res) => {
     res.render('404')
 });
 
 // Listening for requests: the server!
-const port = 3000
+const port = 3000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 });

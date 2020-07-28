@@ -18,8 +18,11 @@ block content
                             label Password
                             input(type="password" placeholder="Password" name="password")
                         .control
-                            input(type="hidden" name="role" value="Sales Agent")
-                                    
+                            label Role
+                            select(name="role")
+                                option Sales Agent
+                                option Manager
+                                        
                     fieldset
                         legend Bio-data
                         .control

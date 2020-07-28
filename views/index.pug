@@ -2,12 +2,12 @@ extends layout.pug
 
 block content
     h2.section-header=page
-    .shop-items
+    .store-items
         each item in category
-            .shop-item
+            .store-item
                 a(href='/product?name='+item.name+'&id='+item._id)
-                    img.shop-item-image(src="images/bike.jpg" )
-                span.shop-item-title
-                .shop-item-details
-                    span.shop-item-price #{item.name}
-                    span.shop-item-price #{item.price}
+                    img.store-item-image(src="images/bike.jpg" )
+                span.store-item-title
+                .store-item-details
+                    span.store-item-price #{item.name}
+                    span.store-item-price #{item.price}
