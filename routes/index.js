@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
         let all = await LTPP.find();
         res.render('index', { page: 'All Categories', category: all })
     } catch (err) {
-        res.render('500');
+        res.redirect('/500');
         console.log(err)
     }
 });
@@ -37,7 +37,7 @@ router.get('/Categories/:category', async (req, res) => {
         let selection = await LTPP.find({ category: req.params.category });
         res.render('categories', { page: `${req.params.category}`, category: selection })
     } catch (err) {
-        res.render('500');
+        res.redirect('/500');
         console.log(err);
     }
 });
@@ -47,7 +47,7 @@ router.get('/product', async (req, res) => {
         let details = await LTPP.find({ _id: req.query.id });
         res.render('product', { page: `${req.query.name}`, product: details })
     } catch (err) {
-        res.render('500');
+        res.redirect('/500');
         console.log(err);
     }
 });
@@ -61,7 +61,7 @@ router.post('/login', (req, res, next) => {
     passport.authenticate('local', function (err, user, info) {
         if (err) { return next(err) }
         if (!user) {
-            return res.render('login', {page: 'Login', message: info.message })
+            return res.render('login', { page: 'Login', message: 'Employee ID or Password incorrect!' })
         }
         req.logIn(user, function (err) {
             if (err) { return next(err); }
@@ -74,5 +74,18 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
+
+//logout
+router.get('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(function (err) {
+            if (err) {
+                return res.render('/manager', { pageTitle: 'Failed to log out', user: req.session.user });
+            } else {
+                return res.redirect('/');
+            }
+        })
+    }
+})
 
 module.exports = router;

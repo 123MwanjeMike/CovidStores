@@ -47,20 +47,7 @@ router.get('/calculator', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, user: 'Store Manager' });
+    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, agent: req.session.user });
 });
-
-//logout
-router.post('/logout', (req, res) => {
-    if (req.session) {
-        req.session.destroy(function (err) {
-            if (err) {
-                return res.render('/agent', { pageTitle: 'Failed to log out', agent: req.session.user });
-            } else {
-                return res.redirect('/');
-            }
-        })
-    }
-})
 
 module.exports = router;

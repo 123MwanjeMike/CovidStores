@@ -36,9 +36,19 @@ mongoose.connection
         console.log(`Connection error: ${err.message}`);
     });
 
-    
+
+// Handling errors
+//Unauthorised access
+app.get('/401', (req, res) => {
+    res.status(401).render('401', { page: '401' })
+});
+// Internal server error
+app.get('/500', (req, res) => {
+    res.status(500).render('500', { page: '500' })
+});
+// Resource not found
 app.get('*', (req, res) => {
-    res.render('404')
+    res.status(404).render('404', { page: '404' })
 });
 
 // Listening for requests: the server!

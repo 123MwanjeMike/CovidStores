@@ -49,10 +49,6 @@ html, body {
     min-height: 25vh;
 }
 
-.band-name a:hover {
-    background-color: rgba(63, 59, 19, 0.4);
-}
-
 .band-name {
     margin: 1rem;
     text-align: center;
@@ -135,45 +131,6 @@ section {
     cursor: pointer;
 }
 
-.btn-header {
-    display: block;
-    margin: .5em auto 2em;
-    color: #fff;
-    border: 2px solid darkgreen;
-    background: rgba(255, 255, 255, .1);
-    border-radius: 0;
-    font-weight: light;
-    padding: .7em 2em;
-}
-
-.btn-header:hover {
-    background-color: rgba(255, 255, 255, -.3);
-}
-
-.btn-play {
-    display: block;
-    margin: 0 auto;
-    color: darkgreen;
-    font-size: 4em;
-    border-radius: 50%;
-    padding: 0;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: darkgreen;
-    border: none;
-    border-radius: .3em;
-    font-weight: bold;
-}
-
-.btn-primary:hover {
-    background-color: green;
-}
-
 .store-item {
     margin: 1%;
 }
@@ -241,20 +198,21 @@ section {
     justify-content: space-around;
 }
 
-.btn-danger {
-    color: #fff;
-    background-color: darkred;
-    border: none;
-    border-radius: .3em;
-    font-weight: 700;
+.message {
+    font-size: 0.5em;
+    color: rgb(228, 23, 23);
 }
 
-.btn-danger:hover {
-    background-color: darkgreen;
+.special-page {
+    text-align: center;
 }
 
-.btn-purchase {
-    display: block;
-    margin: 40px auto 80px;
-    font-size: 1.75em;
+.special-page-label {
+    font-size: 0.5em;
+    color: #333;
+}
+
+.submit {
+    color: rgb(226, 91, 50);
+    font-weight: 1000;
 }
