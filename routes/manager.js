@@ -9,6 +9,16 @@ const LTPP = mongoose.model('LTPP');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.static('public'));
 
+var managerIn = (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }else if (req.session.user.role !== "Manager"){
+        return res.render('401');
+    }
+    next();
+}
+router.use(managerIn);
+
 // Rendering dashboard after successfull login
 router.get('/', (req, res) => {
     res.render('./manager/dashboard', { pageTitle: 'Dashboard', user: 'Store Manager' });
@@ -23,11 +33,11 @@ router.get('/registerAgent', (req, res) => {
 router.post('/registerAgent', async (req, res) => {
     try {
         const newAgent = new users(req.body);
-        await newAgent.save();
+        await users.register(newAgent, req.body.password, (err) => {if (err){throw err}});
         res.redirect('/manager/agents');
     } catch (error) {
         res.render('500');
-        console.log(err);
+        console.log(error);
     };
 });
 // Fetching data from users collection for display on agent list
@@ -36,7 +46,7 @@ router.get('/agents', async (req, res) => {
         let myAgents = await users.find();
         res.render('manager/agents/view', { pageTitle: 'Agents', user: 'Store Manager', users: myAgents })
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     };
 });
@@ -46,7 +56,7 @@ router.get('/updateAgent', async (req, res) => {
         let agentDetails = await users.find({ _id: req.query.id })
         res.render('manager/agents/update', { pageTitle: 'Update Agents', user: 'Store Manager', agent: agentDetails })
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     }
 });
@@ -64,7 +74,7 @@ router.post('/updateAgent', async (req, res) => {
             }
         )
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     }
     res.redirect('/manager/agents');
@@ -75,7 +85,7 @@ router.post('/removeAgent', async (req, res) => {
         await users.deleteOne({ _id: req.body.id })
         res.redirect('/manager/agents');
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     }
 });
@@ -93,7 +103,7 @@ router.post('/addItems', async (req, res) => {
         await newItem.save();
         res.redirect('/manager/items');
     } catch (error) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     };
 });
@@ -103,7 +113,7 @@ router.get('/items', async (req, res) => {
         let items = await LTPP.find();
         res.render('manager/items/view', { pageTitle: 'Items', user: 'Store Manager', LTPP: items })
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     };
 });
@@ -113,7 +123,7 @@ router.get('/updateItem', async (req, res) => {
         let itemDetails = await LTPP.find({ _id: req.query.id })
         res.render('manager/items/update', { pageTitle: 'Update Items', user: 'Store Manager', LTPP: itemDetails })
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     }
 });
@@ -132,7 +142,7 @@ router.post('/updateItem', async (req, res) => {
             }
         )
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     }
     res.redirect('/manager/items');
@@ -143,7 +153,7 @@ router.post('/removeItem', async (req, res) => {
         await LTPP.deleteOne({ _id: req.body.id })
         res.redirect('/manager/items');
     } catch (err) {
-        res.render(500);
+        res.render('500');
         console.log(err);
     }
 });
@@ -161,5 +171,19 @@ router.get('/clients', (req, res) => {
 router.get('/search', (req, res) => {
     res.render('./manager/dashboard', { pageTitle: `${req.query.search}`, user: 'Store Manager' });
 });
+
+//logout
+router.post('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(function (err) {
+            if (err) {
+                return res.render('/manager', { pageTitle: 'Failed to log out', agent:req.session.user });
+            } else {
+                return res.redirect('/');
+            }
+        })
+    }
+})
+
 
 module.exports = router;

@@ -1,17 +1,16 @@
 extends layout.pug
 
 block content
-    h1 Login
-    form(method="POST" action='/login')
-        p=message
-        div.form-group
-            label First Name
-            input(type="text" placeholder="Enter username" name="fname")
-        div.form-group
-            label Password
-            input(type="password" placeholder="Enter Password" name="password")
-        div.form-group
-            input(type="checkbox" name="checkbox")
-            label Remember me
-        div.form-group
-            button(type="submit") Login
+    h2.section-header=page
+        .store-item
+            form(method="POST" action='/login')
+                p
+                    b=message
+                div.form-group
+                    label EmployeeID
+                    input(type="text" placeholder="EmployeeID" name="empid")
+                div.form-group
+                    label Password
+                    input(type="password" placeholder="Enter Password" name="password")
+                div.form-group
+                    button(type="submit") Login

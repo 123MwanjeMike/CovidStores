@@ -174,11 +174,11 @@ section {
     background-color: green;
 }
 
-.shop-item {
+.store-item {
     margin: 1%;
 }
 
-.shop-item-title {
+.store-item-title {
     display: block;
     width: 100%;
     text-align: center;
@@ -188,7 +188,7 @@ section {
     margin-bottom: 15px;
 }
 
-.shop-item-image {
+.store-item-image {
     height: 250px;
     width: 250px;
 }
@@ -223,19 +223,19 @@ section {
     color: #333;
 }
 
-.shop-item-details {
+.store-item-details {
     display: flex;
     align-items: center;
     padding: 5px;
 }
 
-.shop-item-price {
+.store-item-price {
     flex-grow: 1;
     color: #333;
     font-weight: 600;
 }
 
-.shop-items {
+.store-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
