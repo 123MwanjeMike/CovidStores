@@ -18,7 +18,6 @@ block content
                                 th Role
                                 th Date of Birth
                                 th Gender
-                                th Password
                                 
                         tbody
                             each agent in users
@@ -30,7 +29,6 @@ block content
                                     td #{agent.role}
                                     td #{agent.dob}
                                     td #{agent.gender}
-                                    td #{agent.password}
                                     td
                                         form(method="get" action='/manager/updateAgent')
                                             input(type="hidden" placeholder="" name="id", value=agent._id)
