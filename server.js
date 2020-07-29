@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
-
+app.use('/public' , express.static('public'));
 // Serving my static files
 app.use(express.static('public'));
 // Serving my routes
@@ -53,6 +53,6 @@ app.get('*', (req, res) => {
 
 // Listening for requests: the server!
 const port = 3000;
-app.listen(port, () => {
+app.listen(port, (error) => {
     console.log(`Listening on port ${port}`)
 });

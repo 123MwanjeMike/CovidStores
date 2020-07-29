@@ -1,65 +1,68 @@
 extends ../layout.pug
 
 block content
-    #outer
-        h2 Update LTPP item:
-        #inner
-            div
-                each detail in LTPP
-                    form(method="POST" action="/manager/updateItem")
-                        fieldset
-                            legend Product
-                            .control
-                                label Image
-                                input(type="file" name="photo" value=detail.photo)
-                            .control
-                                label Name
-                                input(type="text" placeholder="Name" name="name" value=detail.name)
-                            .control
-                                label Make
-                                input(type="text" placeholder="Make" name="make" value=detail.make)
-                            .control
-                                label Serial Number
-                                input(type="text" placeholder="Serial Number" name="serialNo" value=detail.serialNo)
-                            .control
-                                label Color
-                                input(type="text" placeholder="Color" name="color" value=detail.color)
-                            .control
-                                label Description
-                                textarea(placeholder="Enter product Description" name="description", cols="40", rows="2")=detail.description
-                            .control
-                                label Category
-                                input(list="categories" type="text" name="category" value=detail.category)
-                                datalist(id="categories")
-                                    option
-                                        | Furniture
-                                    option
-                                        | FitnessKits
-                                    option
-                                        | TVs
-                                    option
-                                        | HomeTheatres
-                                    option
-                                        | Others
+    .card.mb-4
+        .card-header
+            |    Update LTPP item
 
-                        fieldset
-                            legend Details
-                            .control
-                                label Date of Entry
-                                input(type="date" name="DOE" value=detail.DOE)
-                            .control
-                                label Number in Stock
-                                input(type="number" placeholder="Number in Stock" name="numberInStock" value=detail.numberInStock)
-                            .control
-                                label Price
-                                input(type="text" placeholder="Price" name="price" value=detail.price)
-                            .control
-                                label Initial Pay
-                                input(type="text" placeholder="Initial Pay" name="initialPay" value=detail.initialPay)
-                            .control
-                                label Pay Interval
-                                input(type="text" placeholder="Interval" name="payInterval" value=detail.payInterval)
+            .card-body
+            #inner
+                div
+                    each detail in LTPP
+                        form(method="POST" action="/manager/updateItem" enctype="multipart/form-data")
+                            fieldset
+                                legend Product
+                                .control
+                                    label Image
+                                    input(type="file" name="photo" value=detail.photo)
+                                .control
+                                    label Name
+                                    input(type="text" placeholder="Name" name="name" value=detail.name)
+                                .control
+                                    label Make
+                                    input(type="text" placeholder="Make" name="make" value=detail.make)
+                                .control
+                                    label Serial Number
+                                    input(type="text" placeholder="Serial Number" name="serialNo" value=detail.serialNo)
+                                .control
+                                    label Color
+                                    input(type="text" placeholder="Color" name="color" value=detail.color)
+                                .control
+                                    label Description
+                                    textarea(placeholder="Enter product Description" name="description", cols="40", rows="2")=detail.description
+                                .control
+                                    label Category
+                                    input(list="categories" type="text" name="category" value=detail.category)
+                                    datalist(id="categories")
+                                        option
+                                            | Furniture
+                                        option
+                                            | FitnessKits
+                                        option
+                                            | TVs
+                                        option
+                                            | HomeTheatres
+                                        option
+                                            | Others
 
-                        input(type="hidden" placeholder="" name="id", value=detail._id)
-                        input#submit(type="submit" value="Update" onclick="validate()")
-                    
+                            fieldset
+                                legend Details
+                                .control
+                                    label Date of Entry
+                                    input(type="date" name="DOE" value=detail.DOE)
+                                .control
+                                    label Number in Stock
+                                    input(type="number" placeholder="Number in Stock" name="numberInStock" value=detail.numberInStock)
+                                .control
+                                    label Price
+                                    input(type="text" placeholder="Price" name="price" value=detail.price)
+                                .control
+                                    label Initial Pay
+                                    input(type="text" placeholder="Initial Pay" name="initialPay" value=detail.initialPay)
+                                .control
+                                    label Pay Interval
+                                    input(type="text" placeholder="Interval" name="payInterval" value=detail.payInterval)
+
+                            input(type="hidden" placeholder="" name="id", value=detail._id)
+                            input#submit(type="submit" value="Update" onclick="validate()")
+                        

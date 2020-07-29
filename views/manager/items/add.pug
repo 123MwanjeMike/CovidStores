@@ -1,63 +1,65 @@
 extends ../layout.pug
 
 block content
-    #outer
-        h2 Add LTPP item:
-        #inner
-            div
-                form(method="POST" action="/manager/addItems")
-                    fieldset
-                        legend Product
-                        .control
-                            label Image
-                            input(type="file" name="photo")
-                        .control
-                            label Name
-                            input(type="text" placeholder="Name" name="name")
-                        .control
-                            label Make
-                            input(type="text" placeholder="Make" name="make")
-                        .control
-                            label Serial Number
-                            input(type="text" placeholder="Serial Number" name="serialNo")
-                        .control
-                            label Color
-                            input(type="text" placeholder="Color" name="color")
-                        .control
-                            label Description
-                            textarea(placeholder="Enter product Description" name="description", cols="40", rows="2")
-                        .control
-                            label Category
-                            select(name="category")
-                                option Select Category
-                                option
-                                    | Furniture
-                                option
-                                    | Fitness Kits and Machinery
-                                option
-                                    | TV Sets
-                                option
-                                    | Home Theaters
-                                option
-                                    | Others
+    .card.mb-4
+        .card-header
+            |    Add LTPP item
+            .card-body            
+            #inner
+                div
+                    form(method="POST" action="/manager/addItems" enctype="multipart/form-data")
+                        fieldset
+                            legend Product
+                            .control
+                                label Image
+                                input(type="file" name="photo")
+                            .control
+                                label Name
+                                input(type="text" placeholder="Name" name="name")
+                            .control
+                                label Make
+                                input(type="text" placeholder="Make" name="make")
+                            .control
+                                label Serial Number
+                                input(type="text" placeholder="Serial Number" name="serialNo")
+                            .control
+                                label Color
+                                input(type="text" placeholder="Color" name="color")
+                            .control
+                                label Description
+                                textarea(placeholder="Enter product Description" name="description", cols="40", rows="2")
+                            .control
+                                label Category
+                                select(name="category")
+                                    option Select Category
+                                    option
+                                        | Furniture
+                                    option
+                                        | Fitness Kits and Machinery
+                                    option
+                                        | TV Sets
+                                    option
+                                        | Home Theaters
+                                    option
+                                        | Others
 
-                    fieldset
-                        legend Details
-                        .control
-                            label Date of Entry
-                            input(type="date" name="DOE")
-                        .control
-                            label Number in Stock
-                            input(type="number" placeholder="Number in Stock" name="numberInStock")
-                        .control
-                            label Price
-                            input(type="text" placeholder="Price" name="price")
-                        .control
-                            label Initial Pay
-                            input(type="text" placeholder="Initial Pay" name="initialPay")
-                        .control
-                            label Pay Interval
-                            input(type="text" placeholder="Interval" name="payInterval")
+                        fieldset
+                            legend Details
+                            .control
+                                label Date of Entry
+                                input(type="date" name="DOE")
+                            .control
+                                label Number in Stock
+                                input(type="number" placeholder="Number in Stock" name="numberInStock")
+                            .control
+                                label Price
+                                input(type="text" placeholder="Price" name="price")
+                            .control
+                                label Initial Pay
+                                input(type="text" placeholder="Initial Pay" name="initialPay")
+                            .control
+                                label Pay Interval
+                                input(type="text" placeholder="Interval" name="payInterval")
 
-                    input#submit(type="submit" value="Submit" onclick="validate()")
-                
+                        input#submit(type="submit" value="Submit" onclick="validate()")
+                    

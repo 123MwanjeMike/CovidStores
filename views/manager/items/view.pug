@@ -28,7 +28,8 @@ block content
                         tbody
                             each item in LTPP
                                 tr
-                                    td #{item.photo}
+                                    td 
+                                        img.item-image(src=""+item.photo)
                                     td #{item.name}
                                     td #{item.make}
                                     td #{item.serialNo}

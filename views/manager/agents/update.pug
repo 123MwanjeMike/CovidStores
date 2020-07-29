@@ -1,43 +1,51 @@
 extends ../layout.pug
 
 block content
-    #outer
-        h2 Edit Agent Details:
-        #inner
-            div 
-                each detail in agent
-                    form(method="POST" action="/manager/updateAgent")
-                        fieldset
-                            legend Credentials
-                            .control
-                                label National ID
-                                input(type="text" placeholder="NIN" name="NIN" value=detail.NIN)
-                            .control
-                                label Employee ID
-                                input(type="text" placeholder="Employee ID" name="empid" value=detail.empid)
-                            .control
-                                input(type="hidden" name="role" value="Sales Agent")
-                                        
-                        fieldset
-                            legend Bio-data
-                            .control
-                                label First name
-                                input#firstname(type="text" placeholder="First Name" name="fname" value=detail.fname)
-                            .control
-                                label Last name
-                                input#lastname(type="text" placeholder="Last Name" name="lname" value=detail.lname)
-                            .control
-                                label Date of Birth
-                                input#dob(type="date" name="dob" value=detail.dob)
-                            .control
-                                label Gender
-                                input(list="gender" placeholder="Gender" name="gender" value=detail.gender)
-                                datalist(id="gender")
-                                    option
-                                        | Male
-                                    option
-                                        | Female
+    .card.mb-4
+        .card-header
+            |    Edit Agent Details
+            
+            .card-body
+                #inner
+                    div 
+                        each detail in agent
+                            form(method="POST" action="/manager/updateAgent")
+                                fieldset
+                                    legend Credentials
+                                    .control
+                                        label National ID
+                                        input(type="text" placeholder="NIN" name="NIN" value=detail.NIN)
+                                    .control
+                                        label Employee ID
+                                        input(type="text" placeholder="Employee ID" name="empid" value=detail.empid)
+                                    .control
+                                        input(type="hidden" name="role" value="Sales Agent")
+                                    .control
+                                        label Role
+                                        select(name="role")
+                                            option Sales Agent
+                                            option Manager
+                                                
+                                fieldset
+                                    legend Bio-data
+                                    .control
+                                        label First name
+                                        input#firstname(type="text" placeholder="First Name" name="fname" value=detail.fname)
+                                    .control
+                                        label Last name
+                                        input#lastname(type="text" placeholder="Last Name" name="lname" value=detail.lname)
+                                    .control
+                                        label Date of Birth
+                                        input#dob(type="date" name="dob" value=detail.dob)
+                                    .control
+                                        label Gender
+                                        input(list="gender" placeholder="Gender" name="gender" value=detail.gender)
+                                        datalist(id="gender")
+                                            option
+                                                | Male
+                                            option
+                                                | Female
 
-                        input(type="hidden" placeholder="" name="id", value=detail._id)
-                        input#submit(type="submit" value="Update" onclick="validate()")
-                    
+                                input(type="hidden" placeholder="" name="id", value=detail._id)
+                                input#submit(type="submit" value="Update" onclick="validate()")
+                            

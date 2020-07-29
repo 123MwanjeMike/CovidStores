@@ -216,3 +216,7 @@ section {
     color: rgb(226, 91, 50);
     font-weight: 1000;
 }
+
+.copyright{
+    font-size: 10px;
+}
