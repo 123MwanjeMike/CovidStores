@@ -1,47 +1,50 @@
 extends ../layout.pug
 
 block content
-    #outer
-        h2 Sales Agent Registration:
-        #inner
-            div
-                form(method="POST" action="/manager/registerAgent")
-                    fieldset
-                        legend Credentials
-                        .control
-                            label National ID
-                            input(type="text" placeholder="NIN" name="NIN")
-                        .control
-                            label Employee ID
-                            input(type="text" placeholder="Employee ID" name="empid")
-                        .control
-                            label Password
-                            input(type="password" placeholder="Password" name="password")
-                        .control
-                            label Role
-                            select(name="role")
-                                option Sales Agent
-                                option Manager
-                                        
-                    fieldset
-                        legend Bio-data
-                        .control
-                            label First name
-                            input#firstname(type="text" placeholder="First Name" name="fname")
-                        .control
-                            label Last name
-                            input#lastname(type="text" placeholder="Last Name" name="lname")
-                        .control
-                            label Date of Birth
-                            input#dob(type="date" name="dob")
-                        .control
-                            label Gender
-                            input(list="gender" Placeholder="Gender" name="gender")
-                            datalist(id="gender")
-                                option
-                                    | Male
-                                option
-                                    | Female
+    .card.mb-4
+        .card-header
+            |    Sales Agent Registration
 
-                    input#submit(type="submit" value="Register" onclick="validate()")
-                
+            .card-body
+                #inner
+                    div
+                        form(method="POST" action="/manager/registerAgent")
+                            fieldset
+                                legend Credentials
+                                .control
+                                    label National ID
+                                    input(type="text" placeholder="NIN" name="NIN")
+                                .control
+                                    label Employee ID
+                                    input(type="text" placeholder="Employee ID" name="empid")
+                                .control
+                                    label Password
+                                    input(type="password" placeholder="Password" name="password")
+                                .control
+                                    label Role
+                                    select(name="role")
+                                        option Sales Agent
+                                        option Manager
+                                                
+                            fieldset
+                                legend Bio-data
+                                .control
+                                    label First name
+                                    input#firstname(type="text" placeholder="First Name" name="fname")
+                                .control
+                                    label Last name
+                                    input#lastname(type="text" placeholder="Last Name" name="lname")
+                                .control
+                                    label Date of Birth
+                                    input#dob(type="date" name="dob")
+                                .control
+                                    label Gender
+                                    input(list="gender" Placeholder="Gender" name="gender")
+                                    datalist(id="gender")
+                                        option
+                                            | Male
+                                        option
+                                            | Female
+
+                            input#submit(type="submit" value="Register" onclick="validate()")
+                        

@@ -79,11 +79,7 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
     if (req.session) {
         req.session.destroy(function (err) {
-            if (err) {
-                return res.render('/manager', { pageTitle: 'Failed to log out', user: req.session.user });
-            } else {
-                return res.redirect('/');
-            }
+            return res.redirect('/');
         })
     }
 })

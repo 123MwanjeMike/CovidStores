@@ -1,22 +1,9 @@
-#outer {
-    border: 1px solid rgb(93, 105, 93);
-    margin: 50px;
-    padding: 15px;
-    padding-top: 0px;
-    background-color: rgb(54, 79, 80);
-    border-radius: 15px;
-}
-
-h2 {
-    color: rgb(188, 224, 188);
-    font-weight: 1000;
-}
-
 #inner {
-    border: 1px solid rgb(131, 223, 192);
+    border: 1px solid rgb(226, 91, 50);
     background-color: #FFFFFF;
-    padding: 7px;
-    padding-bottom: 50px;
+    padding: 10px;
+    padding-bottom: 30px;
+    padding-left: 30px;
 }
 
 .control, fieldset {
@@ -30,5 +17,16 @@ label {
 }
 
 #submit {
-    background-color: rgb(192, 245, 185);
+    color: rgb(226, 91, 50);
+    font-weight: 1000;
+}
+
+.item-image {
+    width: 100%;
+    height: 100%;
+}
+
+.form-image {
+    width: 50px;
+    height: 50px;
 }
