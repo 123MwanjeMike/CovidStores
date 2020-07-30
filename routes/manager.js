@@ -23,7 +23,7 @@ let managerIn = (req, res, next) => {
 
 // Rendering dashboard after successfull login
 router.get('/',managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: 'Dashboard', manager: req.session.user });
+    res.render('./manager/dashboard', { pageTitle: 'Manager', manager: req.session.user });
 });
 
 /////////////////// WORKING WITH AGENTS //////////////////////////////
@@ -75,11 +75,11 @@ router.post('/updateAgent', managerIn, async (req, res) => {
                 }
             }
         )
+        res.redirect('/manager/agents');
     } catch (err) {
         res.redirect('/500');
         console.log(err);
     }
-    res.redirect('/manager/agents');
 });
 //Deleting agent record in the users collection(database)
 router.post('/removeAgent', managerIn, async (req, res) => {
@@ -157,18 +157,16 @@ router.post('/updateItem', managerIn, upload.single('photo'), async (req, res) =
                 }
             }
         )
+        res.redirect('/manager/items');
     } catch (err) {
         res.redirect('/500');
         console.log(err);
     }
-    res.redirect('/manager/items');
 });
 // Removing out of stock items
 router.post('/removeItem', managerIn, async (req, res) => {
-    try {
-        let image = await LTPP.find({ _id: req.body.id });// Getting the image
         // Deleting the image from file location and deleting details from database
-        fs.unlink(image[0].photo, async (err) => {
+        fs.unlink(req.body.photo, async (err) => {
             if (err) throw err
             try {
                 await LTPP.deleteOne({ _id: req.body.id });
@@ -178,10 +176,6 @@ router.post('/removeItem', managerIn, async (req, res) => {
                 console.log(err);
             }
         });
-    } catch (err) {
-        res.redirect('/500');
-        console.log(err);
-    }
 });
 //////////////////// END OF WORKING WITH ITEMS ////////////////////////
 

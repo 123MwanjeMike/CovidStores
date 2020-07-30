@@ -1,0 +1,63 @@
+extends layout.pug
+
+block content
+    .card.mb-4
+        .card-header
+            |    New Purchase:
+            .card-body            
+            #inner
+                div
+                    form(method="POST" action="/agent/addPurchase")
+                        fieldset
+                            legend Client Information
+                            .control
+                                label First name
+                                input(type="text" placeholder="First name" name="fname")
+                            .control
+                                label Last name
+                                input(type="text" placeholder="Last name" name="lname")
+                            .control
+                                label Physical Address
+                                input(type="text" placeholder="Luwum Street Plot 32" name="address")
+                            .control
+                                label Telephone Number
+                                input(type="text" placeholder="07xx-xxxxxx" name="tel")
+                            .control
+                                label Email
+                                input(type="text" placeholder="example@gmail.com" name="email")
+                            .control
+                                label National ID
+                                input(type="text" placeholder="National ID NIN" name="NIN")
+                            .control
+                                label Referee Number
+                                input(type="text" placeholder="07xx-xxxxxx" name="ref")
+
+                        fieldset
+                            legend Item Details
+                            .control
+                                label Item name  
+                                input(type="tect" placeholder="Item name" name="itemName")
+                            .control
+                                label Serial Number
+                                input(type="text" placeholder="Serial Number" name="serialNo")
+                            
+                        fieldset
+                            legend Payment Details
+                            .control
+                                label Initial Pay
+                                input(type="text" placeholder="Initial Pay" name="initialPay")
+                            .control
+                                label Date of Pay
+                                input(type="Date" name="DOP")
+                            .control
+                                label Next Installment
+                                input(type="text" placeholder="Next payable amount" name="nextPay")
+                            .control
+                                label Date of next payment
+                                input(type="Date" name="nDOP")
+                            .control
+                                label Purchase Receipt
+                                input(type="text" placeholder="Receipt Number" name="receipt")
+
+                        input#submit(type="submit" value="Submit" onclick="validate()")
+                    
