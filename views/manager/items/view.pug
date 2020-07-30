@@ -48,6 +48,7 @@ block content
                                                 i.fas.fa-edit
                                     td
                                         form(method="post" action='/manager/removeItem')
+                                            input(type="hidden" placeholder="" name="photo", value=item.photo)
                                             input(type="hidden" placeholder="" name="id", value=item._id)
                                             button(type="submit")
                                                 i.fas.fa-trash

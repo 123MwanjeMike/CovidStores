@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 require("./models/user");
 require("./models/item");
+require("./models/purchase");
 const index = require('./routes/index');
 const agent = require('./routes/agent');
 const manager = require('./routes/manager');
