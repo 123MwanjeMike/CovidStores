@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layout.pug
 
 block content
     .card.mb-4
@@ -58,6 +58,7 @@ block content
                             .control
                                 label Purchase Receipt
                                 input(type="text" placeholder="Receipt Number" name="receipt")
+                                //- input(type="hidden" name="agentEmpid" value=user.empid)
 
                         input#submit(type="submit" value="Submit" onclick="validate()")
                     

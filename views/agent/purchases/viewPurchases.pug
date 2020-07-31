@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layout.pug
 
 block content
     .card.mb-4
@@ -46,4 +46,4 @@ block content
                                     td
                                         form(method="get" action='/agent/updateItem')
                                             input(type="hidden" placeholder="" name="id", value=detail._id)
-                                            button(type="submit") Add Installment
+                                            button(type="submit") Installment
