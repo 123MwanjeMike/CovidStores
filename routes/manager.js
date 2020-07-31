@@ -179,7 +179,7 @@ router.post('/removeItem', managerIn, async (req, res) => {
 });
 //////////////////// END OF WORKING WITH ITEMS ////////////////////////
 
-
+///////////////////  START OF WORKING WITH TRANSACTIONS //////////////
 router.get('/transactions', managerIn, (req, res) => {
     res.render('./manager/dashboard', { pageTitle: 'View Transactions', manager: req.session.user });
 });

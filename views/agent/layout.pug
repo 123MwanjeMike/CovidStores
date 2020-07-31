@@ -32,48 +32,30 @@ html(lang="en")
                                 .sb-nav-link-icon
                                     i.fas.fa-tachometer-alt
                                 |                             Dashboard
-                            .sb-sidenav-menu-heading Interface
-                            a.nav-link.collapsed(href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages")
+                            
+                            .sb-sidenav-menu-heading Add
+                            a.nav-link(href="/agent/addPurchase")
                                 .sb-nav-link-icon
-                                    i.fas.fa-book-open
-                                |                             Actions
-                                .sb-sidenav-collapse-arrow
-                                    i.fas.fa-angle-down
-                            #collapsePages.collapse(aria-labelledby="headingTwo" data-parent="#sidenavAccordion")
-                                nav#sidenavAccordionPages.sb-sidenav-menu-nested.nav.accordion
-                                    a.nav-link.collapsed(href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth")
-                                        | Purchases
-                                        .sb-sidenav-collapse-arrow
-                                            i.fas.fa-angle-down
-                                    #pagesCollapseAuth.collapse(aria-labelledby="headingOne" data-parent="#sidenavAccordionPages")
-                                        nav.sb-sidenav-menu-nested.nav
-                                            a.nav-link(href="/agent/addPurchase") Add Purchase
-                                            a.nav-link(href="/agent/updatePurchase") Update Purchase
-                                    a.nav-link.collapsed(href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError")
-                                        | Installment Payments
-                                        .sb-sidenav-collapse-arrow
-                                            i.fas.fa-angle-down
-                                    #pagesCollapseError.collapse(aria-labelledby="headingOne" data-parent="#sidenavAccordionPages")
-                                        nav.sb-sidenav-menu-nested.nav
-                                            a.nav-link(href="/agent/recordPayment")
-                                                | Record Payment
-                                            a.nav-link(href="/agent/updatePayement")
-                                                | Update payment
-
+                                    i.fas.fa-plus
+                                |                             Purchase
+                            a.nav-link(href="/agent/clients")
+                                .sb-nav-link-icon
+                                    i.fas.fa-plus
+                                |                             Installment
                             .sb-sidenav-menu-heading View
-                            a.nav-link(href="/agent/balances")
-                                .sb-nav-link-icon
-                                    i.fas.fa-table
-                                |                             Payment Balances
                             a.nav-link(href="/agent/clients")
                                 .sb-nav-link-icon
                                     i.fas.fa-table
-                                |                             Program Clients
-                            .sb-sidenav-menu-heading More
-                            a.nav-link(href="/agent/calculator")
+                                |                             Items
+                            a.nav-link(href="/agent/clients")
                                 .sb-nav-link-icon
-                                    i.fas.fa-calculator
-                                |                             Installment Calculator
+                                    i.fas.fa-table
+                                |                             Clients
+                            a.nav-link(href="/agent/viewPurchases")
+                                .sb-nav-link-icon
+                                    i.fas.fa-table
+                                |                             Purchases
+
                     .sb-sidenav-footer
                         .medium Logged in as:
                         //- |   #{agent.fname} #{agent.lname}
