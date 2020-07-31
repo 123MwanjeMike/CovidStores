@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layout.pug
 
 block content
     .card.mb-4
@@ -25,13 +25,9 @@ block content
                                 th Next Installment
                                 th Next Pay Date
                                 th Receipt NO.
-                                th
-                                th
                         tbody
                             each detail in Transaction
                                 tr
-                                    td 
-                                        img.item-image(src=""+detail.photo)
                                     td #{detail.fname}
                                     td #{detail.lname}
                                     td #{detail.address}
@@ -45,6 +41,7 @@ block content
                                     td #{detail.nextPay}
                                     td #{detail.nDOP}
                                     td #{detail.receipt}
+                                    td
                                     td
                                         form(method="get" action='/agent/updateItem')
                                             input(type="hidden" placeholder="" name="id", value=detail._id)

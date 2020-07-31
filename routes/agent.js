@@ -17,11 +17,11 @@ let agentIn = (req, res, next) => {
 
 // gets and displays login page
 router.get('/', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'Dashboard', agent: req.session.user });
+    res.render('./agent/dashboard', { pageTitle: 'Dashboard', user: req.session.user });
 });
 
 router.get('/addPurchase', agentIn, (req, res) => {
-    res.render('./agent/newPurchase', { pageTitle: 'New Purchase', agent: req.session.user });
+    res.render('./agent/newPurchase', { pageTitle: 'New Purchase', user: req.session.user });
 });
 // Route to save the purchase data into the database
 router.post('/addPurchase', agentIn, async (req, res) => {
@@ -38,7 +38,7 @@ router.post('/addPurchase', agentIn, async (req, res) => {
 router.get('/viewPurchases', agentIn, async (req, res) => {
     try {
         let allTransactions = await transaction.find();
-        res.render('./agent/viewPurchases', {pageTitle: 'Purchases', agent: req.session.user, Transaction: allTransactions});
+        res.render('./agent/viewPurchases', {pageTitle: 'Purchases', user: req.session.user, Transaction: allTransactions});
     } catch (error) {
         res.redirect('/500');
         console.log(error);
@@ -46,23 +46,23 @@ router.get('/viewPurchases', agentIn, async (req, res) => {
 });
 
 router.get('/addInstallment', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'Update Purchase', agent: req.session.user });
+    res.render('./agent/dashboard', { pageTitle: 'Update Purchase', user: req.session.user });
 });
 
 router.get('/recordPayment', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'Record Payment', agent: req.session.user });
+    res.render('./agent/dashboard', { pageTitle: 'Record Payment', user: req.session.user });
 });
 
 router.get('/clients', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'View Clients', agent: req.session.user });
+    res.render('./agent/dashboard', { pageTitle: 'View Clients', user: req.session.user });
 });
 
 router.get('/calculator', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'Calculator', agent: req.session.user });
+    res.render('./agent/dashboard', { pageTitle: 'Calculator', user: req.session.user });
 });
 
 router.get('/search', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, agent: req.session.user });
+    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
 });
 
 module.exports = router;

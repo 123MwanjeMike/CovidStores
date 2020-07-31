@@ -8,6 +8,7 @@ const multer = require('multer');
 const router = express.Router();
 const users = mongoose.model('users');
 const LTPP = mongoose.model('LTPP');
+const transaction = mongoose.model('transaction');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use('/public', express.static('public'));
@@ -23,13 +24,13 @@ let managerIn = (req, res, next) => {
 
 // Rendering dashboard after successfull login
 router.get('/',managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: 'Manager', manager: req.session.user });
+    res.render('./manager/dashboard', { pageTitle: 'Manager', user: req.session.user });
 });
 
 /////////////////// WORKING WITH AGENTS //////////////////////////////
 // Handling register agent request
 router.get('/registerAgent', managerIn, (req, res) => {
-    res.render('./manager/agents/register', { pageTitle: 'Register Agent', manager: req.session.user });
+    res.render('./manager/agents/register', { pageTitle: 'Register Agent', user: req.session.user });
 });
 // Saving new agent to database
 router.post('/registerAgent', managerIn, async (req, res) => {
@@ -46,7 +47,7 @@ router.post('/registerAgent', managerIn, async (req, res) => {
 router.get('/agents', managerIn, async (req, res) => {
     try {
         let myAgents = await users.find();
-        res.render('manager/agents/view', { pageTitle: 'Agents', manager: req.session.user, users: myAgents })
+        res.render('manager/agents/view', { pageTitle: 'Agents', user: req.session.user, users: myAgents })
     } catch (err) {
         res.redirect('/500');
         console.log(err);
@@ -56,7 +57,7 @@ router.get('/agents', managerIn, async (req, res) => {
 router.get('/updateAgent', managerIn, async (req, res) => {
     try {
         let agentDetails = await users.find({ _id: req.query.id })
-        res.render('manager/agents/update', { pageTitle: 'Update Agents', manager: req.session.user, agent: agentDetails })
+        res.render('manager/agents/update', { pageTitle: 'Update Agents', user: req.session.user, agent: agentDetails })
     } catch (err) {
         res.redirect('/500');
         console.log(err);
@@ -96,7 +97,7 @@ router.post('/removeAgent', managerIn, async (req, res) => {
 //////////////////// WORKING WITH ITEMS FOR THE SYSTEM ///////////////////
 // Handling add item request
 router.get('/addItems', managerIn, (req, res) => {
-    res.render('./manager/items/add', { pageTitle: 'Add Item', manager: req.session.user });
+    res.render('./manager/items/add', { pageTitle: 'Add Item', user: req.session.user });
 });
 // Posting new item to database
 //Setting Storage
@@ -127,7 +128,7 @@ router.post('/addItems', managerIn, upload.single('photo'), async (req, res) => 
 router.get('/items', managerIn, async (req, res) => {
     try {
         let items = await LTPP.find();
-        res.render('manager/items/view', { pageTitle: 'Items', manager: req.session.user, LTPP: items })
+        res.render('manager/items/view', { pageTitle: 'Items', user: req.session.user, LTPP: items })
     } catch (err) {
         res.redirect('/500');
         console.log(err);
@@ -137,7 +138,7 @@ router.get('/items', managerIn, async (req, res) => {
 router.get('/updateItem', managerIn, async (req, res) => {
     try {
         let itemDetails = await LTPP.find({ _id: req.query.id })
-        res.render('manager/items/update', { pageTitle: 'Update Items', manager: req.session.user, LTPP: itemDetails })
+        res.render('manager/items/update', { pageTitle: 'Update Items', user: req.session.user, LTPP: itemDetails })
     } catch (err) {
         res.redirect('/500');
         console.log(err);
@@ -180,16 +181,22 @@ router.post('/removeItem', managerIn, async (req, res) => {
 //////////////////// END OF WORKING WITH ITEMS ////////////////////////
 
 ///////////////////  START OF WORKING WITH TRANSACTIONS //////////////
-router.get('/transactions', managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: 'View Transactions', manager: req.session.user });
+router.get('/transactions', managerIn, async (req, res) => {
+    try {
+        let allTransactions = await transaction.find();
+        res.render('./manager/purchases/viewPurchases', {pageTitle: 'Transactions', user: req.session.user, Transaction: allTransactions});
+    } catch (error) {
+        res.redirect('/500');
+        console.log(error);
+    }
 });
 
 router.get('/clients', managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: 'View Clients', manager: req.session.user });
+    res.render('./manager/dashboard', { pageTitle: 'View Clients', user: req.session.user });
 });
 
 router.get('/search', managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: `${req.query.search}`, manager: req.session.user });
+    res.render('./manager/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
 });
 
 module.exports = router;
