@@ -9,9 +9,9 @@ router.use(express.static('public'));
 const transaction = mongoose.model('transaction');
 
 let agentIn = (req, res, next) => {
-    // if (!req.session.user) {
-    //     return res.redirect('/login');
-    // }
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
     next();
 }
 
@@ -28,19 +28,25 @@ router.post('/addPurchase', agentIn, async (req, res) => {
     try {
         const newTransaction = new transaction(req.body);
         await newTransaction.save();
-        res.redirect('/agent/addPurchase');        
+        res.redirect('/agent/viewPurchases');        
     } catch (err) {
         res.redirect('/500');
         console.log(err);
     }
 });
+// View purchases
+router.get('/viewPurchases', agentIn, async (req, res) => {
+    try {
+        let allTransactions = await transaction.find();
+        res.render('./agent/viewPurchases', {pageTitle: 'Purchases', agent: req.session.user, Transaction: allTransactions});
+    } catch (error) {
+        res.redirect('/500');
+        console.log(error);
+    }
+});
 
 router.get('/addInstallment', agentIn, (req, res) => {
     res.render('./agent/dashboard', { pageTitle: 'Update Purchase', agent: req.session.user });
-});
-
-router.get('/viewPurchases', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'Record Payment', agent: req.session.user });
 });
 
 router.get('/recordPayment', agentIn, (req, res) => {
