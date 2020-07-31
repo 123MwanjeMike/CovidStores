@@ -25,10 +25,13 @@ block content
                                 th Next Installment
                                 th Next Pay Date
                                 th Receipt NO.
-
+                                th
+                                th
                         tbody
                             each detail in Transaction
                                 tr
+                                    td 
+                                        img.item-image(src=""+detail.photo)
                                     td #{detail.fname}
                                     td #{detail.lname}
                                     td #{detail.address}
@@ -41,9 +44,15 @@ block content
                                     td #{detail.DOP}
                                     td #{detail.nextPay}
                                     td #{detail.nDOP}
-                                    td #{detail.receipt}  
-                                    td
+                                    td #{detail.receipt}
                                     td
                                         form(method="get" action='/agent/updateItem')
                                             input(type="hidden" placeholder="" name="id", value=detail._id)
-                                            button(type="submit") Add Installment
+                                            button(type="submit")
+                                                i.fas.fa-edit
+                                    td
+                                        form(method="post" action='/agent/removeItem')
+                                            input(type="hidden" placeholder="" name="photo", value=detail.photo)
+                                            input(type="hidden" placeholder="" name="id", value=detail._id)
+                                            button(type="submit")
+                                                i.fas.fa-trash
