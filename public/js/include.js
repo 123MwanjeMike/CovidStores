@@ -50,6 +50,6 @@ var validate = () => {
 var installment = () => {
     var purchase = window.prompt("Client Telephone number?");
     if (purchase.length != "") {
-       window.location.href = '/agent/installment?telephone=' + purchase;
+        window.location.href = '/agent/installment?telephone=' + purchase;
     }
 }
