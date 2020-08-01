@@ -1,0 +1,69 @@
+extends ../layout.pug
+
+block content
+    .card.mb-4
+        .card-header
+            |    New Installment:
+            .card-body            
+            #inner
+                div
+                    each detail in purchase
+                        form(method="POST" action="/agent/installment")
+                            fieldset
+                                legend Client Information
+                                .control
+                                    label First name
+                                    input(type="text" placeholder="First name" name="fname" value=detail.fname readonly)
+                                .control
+                                    label Last name
+                                    input(type="text" placeholder="Last name" name="lname" value=detail.lname readonly)
+                                .control
+                                    label Physical Address
+                                    input(type="text" placeholder="Luwum Street Plot 32" name="address" value=detail.address readonly)
+                                .control
+                                    label Telephone Number
+                                    input(type="text" placeholder="07xx-xxxxxx" name="tel" value=detail.tel readonly)
+                                .control
+                                    label Email
+                                    input(type="text" placeholder="example@gmail.com" name="email" readonly value=detail.email)
+                                .control
+                                    label National ID
+                                    input(type="text" placeholder="National ID NIN" name="NIN" readonly value=detail.NIN)
+                                .control
+                                    label Referee Number
+                                    input(type="text" placeholder="07xx-xxxxxx" name="ref" readonly value=detail.ref)
+
+                            fieldset
+                                legend Item Details
+                                .control
+                                    label Item name  
+                                    input(type="tect" placeholder="Item name" name="itemName" readonly value=detail.itemName)
+                                .control
+                                    label Serial Number
+                                    input(type="text" placeholder="Serial Number" name="serialNo" readonly value=detail.serialNo)
+                                
+                            fieldset
+                                legend Payment Details
+                                .control
+                                    label Installment
+                                    input(type="text" placeholder="Installment" name="payment")
+                                .control
+                                    label Date of Pay
+                                    input(type="Date" name="DOP")
+                                .control
+                                    label Next Installment
+                                    input(type="text" placeholder="Next payable amount" name="nextPay")
+                                .control
+                                    label Date of next payment
+                                    input(type="Date" name="nDOP")
+                                .control
+                                    label Purchase Receipt
+                                    input(type="text" name="receipt" readonly value=detail.receipt)
+                                
+                                    //-     label Recorded by
+                                    //-     input(type="text" name="receipt" readonly value=user.fname+" "+user.lname)
+                                    //-     input(type="hidden" name="agentEmpid" value=user.empid)
+                                    input(type="hidden" name="id" readonly value=detail._id)
+
+                            input#submit(type="submit" value="Submit" onclick="validate()")
+                        

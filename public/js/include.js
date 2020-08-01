@@ -46,3 +46,10 @@ var validate = () => {
         alert("Please enter a valid image file ");
     }
 }
+
+var installment = () => {
+    var purchase = window.prompt("Client Telephone number?");
+    if (purchase.length != "") {
+       window.location.href = '/agent/installment?telephone=' + purchase;
+    }
+}

@@ -38,13 +38,11 @@ const transactionSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    initialPay: {
-        type: String,
-        trim: true,
+    payment: {
+        type: Array,
     },
     DOP: {
-        type: String,
-        trim: true,
+        type: Array,
     },
     nextPay: {
         type: String,
