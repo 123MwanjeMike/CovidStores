@@ -5,7 +5,7 @@ html(lang="en")
         include ../includes/head.pug
     body.sb-nav-fixed
         //Navigation bar
-        nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark
+        nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark.siteTheme
             a.navbar-brand(href="/") Covid Stores
             button.btn.btn-link.btn-sm.order-1.order-lg-0#sidebarToggle(href="#")
                 i.fas.fa-bars
@@ -26,15 +26,9 @@ html(lang="en")
         #layoutSidenav
             //Side bar navigation
             #layoutSidenav_nav
-                nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-dark
+                nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light
                     .sb-sidenav-menu
                         .nav
-                            .sb-sidenav-menu-heading Core
-                            a.nav-link(href="/agent")
-                                .sb-nav-link-icon
-                                    i.fas.fa-tachometer-alt
-                                |                             Dashboard
-                            
                             .sb-sidenav-menu-heading Add
                             a.nav-link(href="/agent/addPurchase")
                                 .sb-nav-link-icon
@@ -44,6 +38,13 @@ html(lang="en")
                                 .sb-nav-link-icon
                                     i.fas.fa-plus
                                 |                             Installment
+                            
+                            .sb-sidenav-menu-heading Update
+                            a.nav-link(href="/agent/updatePurchase")
+                                .sb-nav-link-icon
+                                    i.fas.fa-edit
+                                |                             Purchase
+
                             .sb-sidenav-menu-heading View
                             a.nav-link(href="/agent/items")
                                 .sb-nav-link-icon
@@ -58,7 +59,7 @@ html(lang="en")
                                     i.fas.fa-table
                                 |                             Purchases
 
-                    .sb-sidenav-footer
+                    .sb-sidenav-footer.bg-dark
                         .small Logged in as:
                         |   #{user.fname} #{user.lname}
 

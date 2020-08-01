@@ -30,3 +30,11 @@ label {
     width: 50px;
     height: 50px;
 }
+
+.siteTheme {
+    background-color: rgb(226, 91, 50) !important;
+}
+
+.sb-sidenav-light .bg-dark {
+    color: gray;
+}

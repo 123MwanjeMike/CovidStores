@@ -18,7 +18,8 @@ let agentIn = (req, res, next) => {
 
 // gets and displays login page
 router.get('/', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'Dashboard', user: req.session.user });
+    res.redirect('/agent/items');
+    // res.render('./agent/dashboard', { pageTitle: 'Dashboard', user: req.session.user });
 });
 
 router.get('/addPurchase', agentIn, (req, res) => {
@@ -37,6 +38,13 @@ router.post('/addPurchase', agentIn, async (req, res) => {
     }
 });
 
+router.get('/updateInstallment/:', agentIn, (req, res) => {
+    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
+});
+router.post('/updateInstallment/', agentIn, (req, res) => {
+    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
+});
+
 // View purchases
 router.get('/viewPurchases', agentIn, async (req, res) => {
     try {
@@ -48,9 +56,9 @@ router.get('/viewPurchases', agentIn, async (req, res) => {
     }
 });
 
-router.get('/installment', agentIn, async (req, res) => {
+router.get('/installment/:telephone', agentIn, async (req, res) => {
     try {
-        let purchase = await transaction.find({ tel: req.query.telephone })
+        let purchase = await transaction.find({ tel: req.params.telephone })
         res.render('./agent/purchases/addInstallment', { pageTitle: 'New Installment', user: req.session.user, purchase: purchase });
     } catch (error) {
         res.redirect('/404');// Incase the client number is not found in database
@@ -71,10 +79,6 @@ router.post('/installment', agentIn, async (req, res) => {
         res.redirect('/500');
         console.log(err);
     }
-});
-
-router.get('/recordPayment', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: 'Record Payment', user: req.session.user });
 });
 
 router.get('/items', agentIn, async (req, res) => {
