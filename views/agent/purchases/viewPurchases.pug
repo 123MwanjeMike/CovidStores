@@ -20,7 +20,7 @@ block content
                                 th Referee Tel.
                                 th Item Name
                                 th Serial NO.
-                                th Initial Pay
+                                th Payments
                                 th Date of Pay
                                 th Next Installment
                                 th Next Pay Date
@@ -38,12 +38,18 @@ block content
                                     td #{detail.ref}
                                     td #{detail.itemName}
                                     td #{detail.serialNo}
-                                    td #{detail.DOP}
+                                    td
+                                        ol
+                                            each installment in detail.payment
+                                                li=installment
+                                    td
+                                        ol
+                                            each date in detail.DOP
+                                                li=date
                                     td #{detail.nextPay}
                                     td #{detail.nDOP}
                                     td #{detail.receipt}  
                                     td
-                                    td
-                                        form(method="get" action='/agent/updateItem')
-                                            input(type="hidden" placeholder="" name="id", value=detail._id)
+                                        form(method="get" action='/agent/installment?telephone='+detail.tel)
+                                            //- input(type="hidden" name="id", value=detail._id)
                                             button(type="submit") Installment
