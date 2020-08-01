@@ -5,8 +5,10 @@ html(lang="en")
         include ../includes/head.pug
     body.sb-nav-fixed
         //Navigation bar
-        nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark
+        nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark.siteTheme
             a.navbar-brand(href="/") Covid Stores
+            button.btn.btn-link.btn-sm.order-1.order-lg-0#sidebarToggle(href="#")
+                i.fas.fa-bars
             // Navbar Search
             form.d-none.d-md-inline-block.form-inline.ml-auto.mr-0.mr-md-3.my-2.my-md-0(method="GET" action="/manager/search")
                 .input-group
@@ -24,7 +26,7 @@ html(lang="en")
         #layoutSidenav
             //Side bar navigation
             #layoutSidenav_nav
-                nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-dark
+                nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light
                     .sb-sidenav-menu
                         .nav
                             .sb-sidenav-menu-heading Core
@@ -56,8 +58,8 @@ html(lang="en")
                                 .sb-nav-link-icon
                                     i.fas.fa-table
                                 |                             Sales Agents
-                    .sb-sidenav-footer
-                        .medium Logged in as:
+                    .sb-sidenav-footer.bg-dark
+                        .small Logged in as:
                         |  #{user.fname} #{user.lname}
 
             #layoutSidenav_content
