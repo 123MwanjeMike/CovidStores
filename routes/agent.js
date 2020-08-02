@@ -101,8 +101,4 @@ router.get('/clients', agentIn, async (req, res) => {
     }
 });
 
-router.get('/search', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
-});
-
 module.exports = router;

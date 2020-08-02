@@ -195,8 +195,4 @@ router.get('/clients', managerIn, (req, res) => {
     res.render('./manager/dashboard', { pageTitle: 'View Clients', user: req.session.user });
 });
 
-router.get('/search', managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
-});
-
 module.exports = router;

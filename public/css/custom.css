@@ -38,3 +38,7 @@ label {
 .sb-sidenav-light .bg-dark {
     color: gray;
 }
+
+#username {
+    color: whitesmoke;
+}
