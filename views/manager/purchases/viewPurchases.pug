@@ -10,7 +10,7 @@ block content
                 .table-responsive
                     table#dataTable.table.table-bordered(width="100%" cellspacing="0")
                         thead
-                            tr                     
+                            tr               
                                 th First Name
                                 th Last Name
                                 th Address
@@ -20,8 +20,32 @@ block content
                                 th Referee Tel.
                                 th Item Name
                                 th Serial NO.
-                                th Initial Pay
+                                th Price
+                                th Installments
                                 th Date of Pay
+                                th Recorded by
+                                th Balance
+                                th Next Installment
+                                th Next Pay Date
+                                th Receipt NO.
+                                th 
+                                th
+                        tfoot
+                            tr               
+                                th First Name
+                                th Last Name
+                                th Address
+                                th Telephone
+                                th Email
+                                th National ID
+                                th Referee Tel.
+                                th Item Name
+                                th Serial NO.
+                                th Price
+                                th Installments
+                                th Date of Pay
+                                th Recorded by
+                                th Balance
                                 th Next Installment
                                 th Next Pay Date
                                 th Receipt NO.
@@ -39,6 +63,7 @@ block content
                                     td #{detail.ref}
                                     td #{detail.itemName}
                                     td #{detail.serialNo}
+                                    td 
                                     td
                                         ol
                                             each installment in detail.payment
@@ -47,9 +72,11 @@ block content
                                         ol
                                             each date in detail.DOP
                                                 li=date
+                                    td 
+                                    td 
                                     td #{detail.nextPay}
                                     td #{detail.nDOP}
-                                    td #{detail.receipt} 
+                                    td #{detail.receipt}   
                                     td
                                         form(method="get" action='/agent/updateItem')
                                             input(type="hidden" placeholder="" name="id", value=detail._id)

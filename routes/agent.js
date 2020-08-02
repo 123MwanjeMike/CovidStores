@@ -16,7 +16,7 @@ let agentIn = (req, res, next) => {
     next();
 }
 
-// gets and displays login page
+//Agent home page
 router.get('/', agentIn, (req, res) => {
     res.redirect('/agent/items');
     // res.render('./agent/dashboard', { pageTitle: 'Dashboard', user: req.session.user });
@@ -25,8 +25,7 @@ router.get('/', agentIn, (req, res) => {
 router.get('/addPurchase', agentIn, (req, res) => {
     res.render('./agent/purchases/newPurchase', { pageTitle: 'New Purchase', user: req.session.user });
 });
-
-// Route to save the purchase data into the database
+// Saving purchase data into the database
 router.post('/addPurchase', agentIn, async (req, res) => {
     try {
         const newTransaction = new transaction(req.body);
@@ -38,30 +37,41 @@ router.post('/addPurchase', agentIn, async (req, res) => {
     }
 });
 
-router.get('/updateInstallment/:', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
-});
-router.post('/updateInstallment/', agentIn, (req, res) => {
-    res.render('./agent/dashboard', { pageTitle: `${req.query.search}`, user: req.session.user });
-});
-
-// View purchases
-router.get('/viewPurchases', agentIn, async (req, res) => {
+// Update installment details
+router.get('/updateInstallment/:id', agentIn, async (req, res) => {
     try {
-        let allTransactions = await transaction.find();
-        res.render('./agent/purchases/viewPurchases', { pageTitle: 'Purchases', user: req.session.user, Transaction: allTransactions });
+        let purchase = await transaction.find({ _id: req.params.id })
+        res.render('./agent/purchases/updateInstallment', { pageTitle: 'Update Purchase Details', user: req.session.user, purchase: purchase });
     } catch (error) {
         res.redirect('/500');
         console.log(error);
     }
 });
-
-router.get('/installment/:telephone', agentIn, async (req, res) => {
+router.post('/updateInstallment/', agentIn, async (req, res) => {
     try {
-        let purchase = await transaction.find({ tel: req.params.telephone })
+        await transaction.updateOne(
+            { _id: req.body.id },
+            {
+                $set: { 
+                   fname: req.body.fname, address: req.body.address,tel: req.body.tel, email: req.body.email,
+                   NIN: req.body.NIN, ref: req.body.ref, itemName: req.body.itemName, serialNo: req.body.serialNo
+                },
+            }
+        )
+        res.redirect('/agent/viewPurchases');
+    } catch (err) {
+        res.redirect('/500');
+        console.log(err);
+    }
+});
+
+// New installment
+router.get('/installment/:id', agentIn, async (req, res) => {
+    try {
+        let purchase = await transaction.find({ _id: req.params.id })
         res.render('./agent/purchases/addInstallment', { pageTitle: 'New Installment', user: req.session.user, purchase: purchase });
     } catch (error) {
-        res.redirect('/404');// Incase the client number is not found in database
+        res.redirect('/500');
         console.log(error);
     }
 });
@@ -81,6 +91,7 @@ router.post('/installment', agentIn, async (req, res) => {
     }
 });
 
+// View Items
 router.get('/items', agentIn, async (req, res) => {
     try {
         let items = await LTPP.find();
@@ -91,10 +102,22 @@ router.get('/items', agentIn, async (req, res) => {
     }
 });
 
+// View Clients
 router.get('/clients', agentIn, async (req, res) => {
     try {
         let clients = await transaction.find();
         res.render('./agent/viewClients', { pageTitle: 'Clients', user: req.session.user, Client: clients });
+    } catch (error) {
+        res.redirect('/500');
+        console.log(error);
+    }
+});
+
+// View Purchases
+router.get('/viewPurchases', agentIn, async (req, res) => {
+    try {
+        let allTransactions = await transaction.find();
+        res.render('./agent/purchases/viewPurchases', { pageTitle: 'Purchases', user: req.session.user, Transaction: allTransactions });
     } catch (error) {
         res.redirect('/500');
         console.log(error);
