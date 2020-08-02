@@ -23,7 +23,7 @@ let managerIn = (req, res, next) => {
 }
 
 // Rendering dashboard after successfull login
-router.get('/',managerIn, (req, res) => {
+router.get('/', managerIn, (req, res) => {
     res.render('./manager/dashboard', { pageTitle: 'Manager', user: req.session.user });
 });
 
@@ -164,19 +164,39 @@ router.post('/updateItem', managerIn, upload.single('photo'), async (req, res) =
         console.log(err);
     }
 });
-// Removing out of stock items
+// Removing item from display
 router.post('/removeItem', managerIn, async (req, res) => {
-        // Deleting the image from file location and deleting details from database
-        fs.unlink(req.body.photo, async (err) => {
-            if (err) throw err
-            try {
-                await LTPP.deleteOne({ _id: req.body.id });
-                res.redirect('/manager/items');
-            } catch (error) {
-                res.redirect('/500');
-                console.log(err);
-            }
-        });
+    // Deleting the image from file location and deleting details from database
+    fs.unlink(req.body.photo, async (err) => {
+        if (err) throw err
+        try {
+            await LTPP.deleteOne({ _id: req.body.id });
+            res.redirect('/manager/items');
+        } catch (error) {
+            res.redirect('/500');
+            console.log(err);
+        }
+    });
+});
+// Viewing Out of stock items in the database
+router.get('/outStock', managerIn, async (req, res) => {
+    try {
+        let items = await LTPP.find({ numberInStock: 0 });
+        res.render('manager/items/outStock', { pageTitle: 'Out of stock', user: req.session.user, outStock: items })
+    } catch (err) {
+        res.redirect('/500');
+        console.log(err);
+    };
+});
+// Removing all out of stock items
+router.post('/outStock', managerIn, async (req, res) => {
+    try {
+        await LTPP.deleteMany({numberInStock: 0});
+        res.redirect('/manager/items');
+    } catch (error) {
+        res.redirect('/500');
+        console.log(err);
+    }
 });
 //////////////////// END OF WORKING WITH ITEMS ////////////////////////
 
@@ -184,7 +204,7 @@ router.post('/removeItem', managerIn, async (req, res) => {
 router.get('/transactions', managerIn, async (req, res) => {
     try {
         let allTransactions = await transaction.find();
-        res.render('./manager/purchases/viewPurchases', {pageTitle: 'Transactions', user: req.session.user, Transaction: allTransactions});
+        res.render('./manager/purchases/viewPurchases', { pageTitle: 'Transactions', user: req.session.user, Transaction: allTransactions });
     } catch (error) {
         res.redirect('/500');
         console.log(error);

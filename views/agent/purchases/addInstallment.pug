@@ -3,12 +3,31 @@ extends ../layout.pug
 block content
     .card.mb-4
         .card-header
+            i.fas.fa-plus.mr-1
             |    New Installment:
             .card-body            
             #inner
                 div
                     each detail in purchase
                         form(method="POST" action="/agent/installment")
+                            fieldset
+                                legend Installment
+                                .control
+                                    label Installment
+                                    input(type="text" placeholder="Installment" name="payment")
+                                .control
+                                    label Date of Pay
+                                    input(type="Date" name="DOP")
+                                .control
+                                    label Next Installment
+                                    input(type="text" placeholder="Next payable amount" readonly name="nextPay")
+                                .control
+                                    label Date of next payment
+                                    input(type="Date" readonly name="nDOP")
+                                .control
+                                    label Purchase Receipt
+                                    input(type="text" name="receipt" readonly value=detail.receipt)
+
                             fieldset
                                 legend Client Information
                                 .control
@@ -41,24 +60,6 @@ block content
                                 .control
                                     label Serial Number
                                     input(type="text" placeholder="Serial Number" name="serialNo" readonly value=detail.serialNo)
-                                
-                            fieldset
-                                legend Payment Details
-                                .control
-                                    label Installment
-                                    input(type="text" placeholder="Installment" name="payment")
-                                .control
-                                    label Date of Pay
-                                    input(type="Date" name="DOP")
-                                .control
-                                    label Next Installment
-                                    input(type="text" placeholder="Next payable amount" name="nextPay")
-                                .control
-                                    label Date of next payment
-                                    input(type="Date" name="nDOP")
-                                .control
-                                    label Purchase Receipt
-                                    input(type="text" name="receipt" readonly value=detail.receipt)
                                 
                                     //-     label Recorded by
                                     //-     input(type="text" name="receipt" readonly value=user.fname+" "+user.lname)

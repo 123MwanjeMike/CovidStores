@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
     head
-        title Agent | #{pageTitle}
+        title Covid Stores | #{pageTitle}
         include ../includes/head.pug
     body.sb-nav-fixed
         //Navigation bar
@@ -32,16 +32,11 @@ html(lang="en")
                                 .sb-nav-link-icon
                                     i.fas.fa-plus
                                 |                             Purchase
-                            a.nav-link#installment(href="#" onClick="installment();")
-                                .sb-nav-link-icon
-                                    i.fas.fa-plus
-                                |                             Installment
-                            
-                            .sb-sidenav-menu-heading Update
-                            a.nav-link(href="/agent/updatePurchase")
-                                .sb-nav-link-icon
-                                    i.fas.fa-edit
-                                |                             Purchase
+                            //- ///// This is for the Install button but i later found it irrelevant
+                            //- a.nav-link#installment(href="#" onClick="installment();")
+                            //-     .sb-nav-link-icon
+                            //-         i.fas.fa-plus
+                            //-     |                             Installment
 
                             .sb-sidenav-menu-heading View
                             a.nav-link(href="/agent/items")

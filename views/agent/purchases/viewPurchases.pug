@@ -11,7 +11,7 @@ block content
                     table#dataTable.table.table-bordered(width="100%" cellspacing="0")
                         thead
                             tr     
-                                th Actions                
+                                th New                
                                 th First Name
                                 th Last Name
                                 th Address
@@ -21,20 +21,42 @@ block content
                                 th Referee Tel.
                                 th Item Name
                                 th Serial NO.
-                                th Payments
+                                th Price
+                                th Installments
                                 th Date of Pay
+                                th Recorded by
+                                th Balance
                                 th Next Installment
                                 th Next Pay Date
                                 th Receipt NO.
-                                
+                        tfoot
+                            tr     
+                                th New                
+                                th First Name
+                                th Last Name
+                                th Address
+                                th Telephone
+                                th Email
+                                th National ID
+                                th Referee Tel.
+                                th Item Name
+                                th Serial NO.
+                                th Price
+                                th Installments
+                                th Date of Pay
+                                th Recorded by
+                                th Balance
+                                th Next Installment
+                                th Next Pay Date
+                                th Receipt NO.
                         tbody
                             each detail in Transaction
                                 tr
                                     td
-                                        form(method="get" action='/agent/updateInstallment/'+detail.tel)
+                                        form(method="get" action='/agent/updateInstallment/'+detail._id)
                                             button(type="submit") Update
                                         br
-                                        form(method="get" action='/agent/installment/'+detail.tel)
+                                        form(method="get" action='/agent/installment/'+detail._id)
                                             button(type="submit") Installment
 
                                     td #{detail.fname}
@@ -46,6 +68,7 @@ block content
                                     td #{detail.ref}
                                     td #{detail.itemName}
                                     td #{detail.serialNo}
+                                    td 
                                     td
                                         ol
                                             each installment in detail.payment
@@ -54,6 +77,8 @@ block content
                                         ol
                                             each date in detail.DOP
                                                 li=date
+                                    td 
+                                    td 
                                     td #{detail.nextPay}
                                     td #{detail.nDOP}
                                     td #{detail.receipt}  
