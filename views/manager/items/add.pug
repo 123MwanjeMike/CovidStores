@@ -12,16 +12,16 @@ block content
                             legend Product
                             .control
                                 label Image
-                                input(type="file" name="photo")
+                                input(type="file" id="photo" name="photo" )
                             .control
                                 label Name
-                                input(type="text" placeholder="Name" name="name")
+                                input(type="text" placeholder="Name" id="name" name="name" )
                             .control
                                 label Make
-                                input(type="text" placeholder="Make" name="make")
+                                input(type="text" placeholder="Make" id="make" name="make" )
                             .control
                                 label Serial Number
-                                input(type="text" placeholder="Serial Number" name="serialNo")
+                                input(type="text" placeholder="Serial Number" id="serialNo" name="serialNo"  )
                             .control
                                 label Color
                                 input(type="text" placeholder="Color" name="color")
@@ -30,7 +30,7 @@ block content
                                 textarea(placeholder="Enter product Description" name="description", cols="40", rows="2")
                             .control
                                 label Category
-                                select(name="category")
+                                select(id="category" name="category")
                                     option Select Category
                                     option
                                         | Furniture
@@ -47,19 +47,20 @@ block content
                             legend Details
                             .control
                                 label Date of Entry
-                                input(type="date" name="DOE")
+                                input(type="date" id="DOE" name="DOE")
                             .control
                                 label Number in Stock
-                                input(type="number" placeholder="Number in Stock" name="numberInStock")
+                                input(type="number" placeholder="Number in Stock" id="numberInStock" name="numberInStock" )
                             .control
                                 label Price
-                                input(type="text" placeholder="Price" name="price")
+                                input(type="number" placeholder="Price" id="price" name="price" )
                             .control
                                 label Initial Pay
-                                input(type="text" placeholder="Initial Pay" name="initialPay")
+                                input(type="number" placeholder="Initial Pay" id="initialPay" name="initialPay" )
                             .control
                                 label Pay Interval
-                                input(type="text" placeholder="Interval" name="payInterval")
+                                input(type="number" placeholder="Interval" id="payInterval" name="payInterval" )
 
-                        input#submit(type="submit" value="Submit" onclick="validate()")
+                        input#submit(type="submit" value="Submit" onmouseover="validate()")
+                        p#error
                     
