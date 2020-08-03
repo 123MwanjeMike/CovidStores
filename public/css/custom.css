@@ -42,3 +42,7 @@ label {
 #username {
     color: whitesmoke;
 }
+
+#error {
+    color: rgb(228, 23, 23);
+}
