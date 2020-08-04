@@ -40,7 +40,7 @@ block content
                                 input(type="text" placeholder="Serial Number" onmouseout="" name="serialNo")
                             .control
                                 label Item name  
-                                input(type="tect" placeholder="Item name" name="itemName")
+                                input(type="tect" placeholder="Item name" id="itemName" name="itemName")
                             .control
                                 label Price
                                 input(type="text" placeholder="Price" name="price" id="price")
@@ -67,5 +67,6 @@ block content
                                 label Purchase Receipt
                                 input(type="text" placeholder="Receipt Number" name="receipt")
 
+                        p#error
                         input#submit(type="submit" value="Submit" onmouseover="purchase()")
                     

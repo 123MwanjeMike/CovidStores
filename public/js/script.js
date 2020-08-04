@@ -80,16 +80,43 @@ var validate = () => {
 }
 // First installment calc
 var firstInstall = () => {
-    initialPay.value = price.value - (price.value/2);
+    initialPay.value = price.value - (price.value / 2);
 }
 //This will ensure serial number is unique and will be set to a default value if no serial number is entered
 var serialNumber = () => {
     var serialNo = document.getElementById('serialNo');
     if (serialNo.value.length < 9) {    //Removing useless figures
-        serialNo.value += Date.now()    
+        serialNo.value += Date.now()
     }
 }
 
 var purchase = () => {
-    
+    var errors = document.getElementById('error');
+    function required(input, error) {
+        this.input = input.value
+        this.error = error
+        this.present = () => {
+            if (this.input == "") {
+                input.style.border = "1px solid red";
+                errors.textContent = "Please enter " + this.error + "!"
+            }else{
+                input.style.border = "";
+                errors.textContent = "";
+            }
+        }
+    }
+    // function regex(input, error, regex) {
+    //     required.call(input, error)
+    //     this.regex = regex
+    //     this.format = () => {
+    //         if (!this.input.value.match(this.regex)) {
+    //             input.style.border = "1px solid red";
+    //             errors.textContent = "Please enter a valid" +this.error+ "!"
+    //         }
+    //     }
+    // }
+    // regex.prototype = new required();
+    var itemname = new required(document.getElementById('itemName'), "item name")
+    itemname.present()
+    // itemname.format()
 }
