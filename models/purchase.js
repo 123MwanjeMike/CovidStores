@@ -30,11 +30,15 @@ const transactionSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    serialNo: {
+        type: String,
+        trim: true,
+    },
     itemName: {
         type: String,
         trim: true,
     },
-    serialNo: {
+    price: {
         type: String,
         trim: true,
     },
@@ -43,6 +47,14 @@ const transactionSchema = new mongoose.Schema({
     },
     DOP: {
         type: Array,
+    },
+    agent: {
+        type: Array,
+        trim: true,
+    },
+    balance: {
+        type: String,
+        trim: true,
     },
     nextPay: {
         type: String,

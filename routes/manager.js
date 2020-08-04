@@ -211,8 +211,4 @@ router.get('/transactions', managerIn, async (req, res) => {
     }
 });
 
-router.get('/clients', managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: 'View Clients', user: req.session.user });
-});
-
 module.exports = router;

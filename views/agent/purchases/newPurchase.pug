@@ -36,11 +36,14 @@ block content
                         fieldset
                             legend Item Details
                             .control
+                                label Serial Number
+                                input(type="text" placeholder="Serial Number" name="serialNo")
+                            .control
                                 label Item name  
                                 input(type="tect" placeholder="Item name" name="itemName")
                             .control
-                                label Serial Number
-                                input(type="text" placeholder="Serial Number" name="serialNo")
+                                label Price
+                                input(type="text" placeholder="Price" name="price" id="price")
                             
                         fieldset
                             legend Payment Details
@@ -49,7 +52,11 @@ block content
                                 input(type="text" placeholder="Initial Pay" name="payment")
                             .control
                                 label Date of Pay
-                                input(type="Date" name="DOP")
+                                input(type="Date" name="DOP" id="DOP")
+                                input(type="hidden" name="agent" value=user.empid)
+                            .control
+                                label Balance
+                                input(type="text" placeholder="Balance" name="balance")
                             .control
                                 label Next Installment
                                 input(type="text" placeholder="Next payable amount" name="nextPay")
@@ -59,7 +66,6 @@ block content
                             .control
                                 label Purchase Receipt
                                 input(type="text" placeholder="Receipt Number" name="receipt")
-                                //- input(type="hidden" name="agentEmpid" value=user.empid)
 
-                        input#submit(type="submit" value="Submit" onclick="validate()")
+                        input#submit(type="submit" value="Submit" onmouseover="purchase()")
                     

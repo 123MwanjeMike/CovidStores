@@ -12,7 +12,7 @@ var validate = () => {
     var numberInStock = document.getElementById('numberInStock');
     var payInterval = document.getElementById('payInterval');
     var error = document.getElementById('error');
-    900000
+
     // Function to check for any essential empty fields
     var empty = (check) => {
         let mine = check.value.length;
@@ -83,9 +83,6 @@ var firstInstall = () => {
     initialPay.value = price.value - (price.value/2);
 }
 
-// var installment = () => {
-//     var purchase = window.prompt("Client Telephone number?");
-//     if (purchase.length != "") {
-//         window.location.href = '/agent/installment/'+purchase ;
-//     }
-// }
+var purchase = () => {
+    
+}
