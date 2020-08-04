@@ -12,8 +12,7 @@ var validate = () => {
     var numberInStock = document.getElementById('numberInStock');
     var payInterval = document.getElementById('payInterval');
     var error = document.getElementById('error');
-
-
+    900000
     // Function to check for any essential empty fields
     var empty = (check) => {
         let mine = check.value.length;

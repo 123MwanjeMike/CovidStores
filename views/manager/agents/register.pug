@@ -13,13 +13,13 @@ block content
                                 legend Credentials
                                 .control
                                     label National ID
-                                    input(type="text" placeholder="NIN" name="NIN")
+                                    input(type="text" placeholder="NIN" name="NIN" required)
                                 .control
                                     label Employee ID
-                                    input(type="text" placeholder="Employee ID" name="empid")
+                                    input(type="text" placeholder="Employee ID" name="empid" required)
                                 .control
                                     label Password
-                                    input(type="password" placeholder="Password" name="password")
+                                    input(type="password" placeholder="Password" name="password" required)
                                 .control
                                     label Role
                                     select(name="role")
@@ -30,16 +30,16 @@ block content
                                 legend Bio-data
                                 .control
                                     label First name
-                                    input#firstname(type="text" placeholder="First Name" name="fname")
+                                    input#firstname(type="text" placeholder="First Name" name="fname" required)
                                 .control
                                     label Last name
-                                    input#lastname(type="text" placeholder="Last Name" name="lname")
+                                    input#lastname(type="text" placeholder="Last Name" name="lname" required)
                                 .control
                                     label Date of Birth
-                                    input#dob(type="date" name="dob")
+                                    input#dob(type="date" name="dob" required)
                                 .control
                                     label Gender
-                                    input(list="gender" Placeholder="Gender" name="gender")
+                                    input(list="gender" Placeholder="Gender" name="gender" required)
                                     datalist(id="gender")
                                         option
                                             | Male

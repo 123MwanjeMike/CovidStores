@@ -52,7 +52,7 @@ block content
                                     input(type="date" name="DOE" value=detail.DOE)
                                 .control
                                     label Number in Stock
-                                    input(type="number" placeholder="Number in Stock" name="numberInStock" id="numberInStock" value=detail.numberInStock)
+                                    input(type="text" placeholder="Number in Stock" name="numberInStock" id="numberInStock" value=detail.numberInStock)
                                 .control
                                     label Price
                                     input(type="text" placeholder="Price" name="price" id="price" onclick="firstInstall()" value=detail.price)
@@ -63,6 +63,7 @@ block content
                                     label Pay Interval
                                     input(type="text" placeholder="Interval" name="payInterval" id="payInterval" value=detail.payInterval)
 
+                            p#error
                             input(type="hidden" placeholder="" name="id", value=detail._id)
-                            input#submit(type="submit" value="Update" onclick="validate()")
+                            input#submit(type="submit" value="Update" onmouseover="validate()")
                         
