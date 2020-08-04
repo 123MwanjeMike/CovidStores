@@ -81,7 +81,7 @@ router.post('/installment', agentIn, async (req, res) => {
             { _id: req.body.id },
             {
                 $set: { nextPay: req.body.nextPay, nDOP: req.body.nDOP },
-                $push: { payment: req.body.payment, DOP: req.body.DOP }
+                $push: { payment: req.body.payment, DOP: req.body.DOP, agent: req.body.agent  }
             }
         )
         res.redirect('/agent/viewPurchases');

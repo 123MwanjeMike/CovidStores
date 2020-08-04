@@ -16,6 +16,8 @@ const itemSchema = new mongoose.Schema({
     },
     serialNo: {
         type: String,
+        unique: true,
+        required: true,
         trim: true,
     },
     color: {
