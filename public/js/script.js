@@ -32,14 +32,13 @@ var validate = () => {
     empty(photo);
     empty(itemName);
     empty(make);
-    empty(serialNo);
     empty(category);
     empty(numberInStock);
     empty(price);
     empty(initialPay);
 
     // Validating item name
-    var letters = /^[a-zA-Z]+$/;
+    var letters = /^[a-zA-Z\s]+$/;
     if (!itemName.value.match(letters)) {
         itemName.style.border = "1px solid red";
         error.textContent = "Please enter only characters(no numbers) in Name input!";
@@ -50,6 +49,7 @@ var validate = () => {
         make.style.border = "1px solid red";
         error.textContent = "Please enter strictly 2 capital letters in Make input!";
     }
+
     // Serial number
     var alphanumeric = /^[a-zA-Z0-9_]*$/;
     if (serialNo.value.length < 6 || serialNo.value.length > 22) {
@@ -58,7 +58,7 @@ var validate = () => {
     } else if (!serialNo.value.match(alphanumeric)) {
         serialNo.style.border = "1px solid red";
         error.textContent = "Please enter only alphanumeric characters"
-    } else { }// Will add here code to ensure its unique
+    }
 
     // Validating payment fields
     var numberegex = /^[0-9]+$/;
@@ -81,6 +81,13 @@ var validate = () => {
 // First installment calc
 var firstInstall = () => {
     initialPay.value = price.value - (price.value/2);
+}
+//This will ensure serial number is unique and will be set to a default value if no serial number is entered
+var serialNumber = () => {
+    var serialNo = document.getElementById('serialNo');
+    if (serialNo.value.length < 9) {    //Removing useless figures
+        serialNo.value += Date.now()    
+    }
 }
 
 var purchase = () => {
