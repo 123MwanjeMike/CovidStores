@@ -15,7 +15,7 @@ block content
                                 input(type="file" id="photo" name="photo" )
                             .control
                                 label Name
-                                input(type="text" placeholder="Name" id="name" name="name" )
+                                input(type="text" placeholder="Name" id="itemName" name="name" )
                             .control
                                 label Make
                                 input(type="text" placeholder="Make" id="make" name="make" )
@@ -31,7 +31,7 @@ block content
                             .control
                                 label Category
                                 select(id="category" name="category")
-                                    option Select Category
+                                    option
                                     option
                                         | Furniture
                                     option
@@ -62,6 +62,6 @@ block content
                                 input(type="text" placeholder="Interval" id="payInterval" name="payInterval" )
 
                         p#error
-                        input#submit(type="submit" value="Submit" onmouseover="validate()")
+                        input#submit(type="submit" value="Submit" onmouseover="validate();")
         
                     
