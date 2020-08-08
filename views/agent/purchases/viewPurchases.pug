@@ -65,7 +65,7 @@ block content
                                     td #{detail.ref}
                                     td #{detail.itemName}
                                     td #{detail.serialNo}
-                                    td #{detail.price}
+                                    td #{detail.price}.00 ugx
                                     td 
                                         ol
                                             each installment in detail.payment
@@ -78,7 +78,7 @@ block content
                                         ol
                                             each empId in detail.agent
                                                 li=empId
-                                    td #{detail.balance}
-                                    td #{detail.nextPay}
+                                    td #{detail.balance}.00 ugx
+                                    td #{detail.nextPay}.00 ugx
                                     td #{detail.nDOP}
                                     td #{detail.receipt}  

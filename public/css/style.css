@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    font-family: Raleway;
     color: #555;
     list-style: none;
     text-decoration: none;
@@ -122,13 +121,6 @@ section {
 
 .footer-nav li {
     padding: 0 .5em;
-}
-
-.btn {
-    text-align: center;
-    vertical-align: middle;
-    padding: .67em;
-    cursor: pointer;
 }
 
 .store-item {
