@@ -22,8 +22,14 @@ router.get('/', agentIn, (req, res) => {
     // res.render('./agent/dashboard', { pageTitle: 'Dashboard', user: req.session.user });
 });
 
-router.get('/addPurchase', agentIn, (req, res) => {
-    res.render('./agent/purchases/newPurchase', { pageTitle: 'New Purchase', user: req.session.user });
+router.get('/addPurchase', agentIn, async (req, res) => {
+    try {
+        let items = await LTPP.find();
+        res.render('./agent/purchases/newPurchase', { pageTitle: 'New Purchase', user: req.session.user, LTPP: items });
+    } catch (error) {
+        res.redirect('/500');
+        console.log(error);
+    }
 });
 // Saving purchase data into the database
 router.post('/addPurchase', agentIn, async (req, res) => {
@@ -120,6 +126,15 @@ router.get('/viewPurchases', agentIn, async (req, res) => {
         res.render('./agent/purchases/viewPurchases', { pageTitle: 'Purchases', user: req.session.user, Transaction: allTransactions });
     } catch (error) {
         res.redirect('/500');
+        console.log(error);
+    }
+});
+// Checking database records
+router.get('/api/:serialNo', async (req, res) => {
+    try {
+        let item = await LTPP.find({serialNo: req.params.serialNo});
+        res.json({item});
+    } catch (error) {
         console.log(error);
     }
 });

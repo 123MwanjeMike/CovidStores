@@ -37,19 +37,19 @@ const itemSchema = new mongoose.Schema({
         trim: true,
     },
     numberInStock: {
-        type: String,
+        type: Number,
         trim: true,
     },
     price: {
-        type: String,
+        type: Number,
         trim: true,
     },
     initialPay: {
-        type: String,
+        type: Number,
         trim: true,
     },
     payInterval: {
-        type: String,
+        type: Number,
         trim: true,
     },
 });

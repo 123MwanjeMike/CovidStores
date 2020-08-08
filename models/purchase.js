@@ -39,7 +39,7 @@ const transactionSchema = new mongoose.Schema({
         trim: true,
     },
     price: {
-        type: String,
+        type: Number,
         trim: true,
     },
     payment: {
@@ -53,7 +53,7 @@ const transactionSchema = new mongoose.Schema({
         trim: true,
     },
     balance: {
-        type: String,
+        type: Number,
         trim: true,
     },
     nextPay: {
