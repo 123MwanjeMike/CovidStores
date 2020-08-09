@@ -56,8 +56,12 @@ const transactionSchema = new mongoose.Schema({
         type: Number,
         trim: true,
     },
+    payInterval: {
+        type: Number,
+        trim: true,
+    },
     nextPay: {
-        type: String,
+        type: Number,
         trim: true,
     },
     nDOP: {

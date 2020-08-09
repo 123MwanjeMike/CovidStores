@@ -43,6 +43,6 @@ label {
     color: whitesmoke;
 }
 
-#error {
+.errors {
     color: rgb(228, 23, 23);
 }

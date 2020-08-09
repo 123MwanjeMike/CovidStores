@@ -13,17 +13,24 @@ block content
                             fieldset
                                 legend Installment
                                 .control
+                                    //I'm using these fields only for calculations
+                                    input(type="hidden" placeholder="Paid Amount" id="price" value=detail.balance)
+                                    input(type="hidden" placeholder="Pay interval" id="payInterval" value=detail.payInterval)
+
                                     label Installment
-                                    input(type="text" placeholder="Installment" name="payment")
+                                    input(type="text" placeholder="Installment" onmouseout="installmentpaid()" name="payment" id="payment")
                                 .control
                                     label Date of Pay
-                                    input(type="Date" name="DOP")
+                                    input(type="text" name="DOP" id="DOP" readonly)
+                                .control
+                                    label Balance
+                                    input(type="text" placeholder="Balance" name="balance" readonly id="balance")
                                 .control
                                     label Next Installment
-                                    input(type="text" placeholder="Next payable amount" readonly name="nextPay")
+                                    input(type="text" placeholder="Next payable amount" readonly name="nextPay" id="nextPay")
                                 .control
                                     label Date of next payment
-                                    input(type="Date" readonly name="nDOP")
+                                    input(type="text" readonly name="nDOP" id="nDOP")
                                 .control
                                     label Purchase Receipt
                                     input(type="text" name="receipt" readonly value=detail.receipt)
@@ -60,11 +67,8 @@ block content
                                 .control
                                     label Serial Number
                                     input(type="text" placeholder="Serial Number" name="serialNo" readonly value=detail.serialNo)
-                                
-                                    //-     label Recorded by
-                                    //-     input(type="text" name="receipt" readonly value=user.fname+" "+user.lname)
-                                    //-     input(type="hidden" name="agentEmpid" value=user.empid)
+
+                                    input(type="hidden" name="agent" value=user.empid)
                                     input(type="hidden" name="id" readonly value=detail._id)
 
                             input#submit(type="submit" value="Submit" onclick="validate()")
-                        

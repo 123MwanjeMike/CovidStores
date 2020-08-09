@@ -19,57 +19,60 @@ var make = document.getElementById('make');
 var category = document.getElementById('category');
 var numberInStock = document.getElementById('numberInStock');
 var payInterval = document.getElementById('payInterval');
-var initialPay = document.getElementById('initialPay');
-var errors = document.getElementById('error');
+var payment = document.getElementById('payment');
+var formError = document.getElementById('error');
 var submit = document.getElementById('submit');
 var mybutton = document.getElementById('mybutton');
+var serialError = document.getElementById('serialError');
 
-
-// First installment calc
+// First installment calc from add item page(not purchase)
 var firstInstall = () => {
     var price = document.getElementById('price');
     var initialPay = document.getElementById('initialPay');
     initialPay.value = price.value - (price.value / 2);
 }
-
+//from new purchase and installment
 var balanceafter = () => {
-    balance.value = (payment.value - initialPay.value)
+    balance.value = (price.value - payment.value)
 }
+// Gets date, within t number of months
+var currentdate = (t) => {
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + (t + 1); //January is 0.
+    var yyyy = today.getFullYear();
 
-//This will ensure serial number is unique and will be set to a default value if no serial number is entered
-var serialNumber = () => {
-    var serialNo = document.getElementById('serialNo');
-    if (serialNo.value.length < 9) {    //Removing useless figures
-        serialNo.value += Date.now()
-    }
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return dd + '/' + mm + '/' + yyyy;
 }
 
 // A function that will do all my data validations system wide
 var required = (input, error, regex) => {
     if (input.value.length == "") {
         input.style.border = "1px solid red";
-        errors.textContent = "Please enter " + error + "!"
+        formError.textContent = "Please enter " + error + "!"
         submit.disabled = true;
         return false;
     } else {
         input.style.border = "";
-        errors.textContent = "";
+        formError.textContent = "";
         submit.disabled = false;
     }
     if (regex != undefined) {
         if (!input.value.match(regex)) {
             input.style.border = "1px solid red";
-            errors.textContent = "Please enter a valid " + error + "!"
+            formError.textContent = "Please enter a valid " + error + "!"
             submit.disabled = true;
             return false;
         } else {
             input.style.border = "";
-            errors.textContent = "";
+            formError.textContent = "";
             submit.disabled = false;
         }
     }
 }
-
+// Item entry validation
 var validate = () => {
     if (required(make, "make", '^[A-Z]{2}$') === false) return 0
     if (required(photo, "item image") === false) return 0
@@ -83,11 +86,11 @@ var validate = () => {
     // Serial number
     if (serialNo.value.length < 6 || serialNo.value.length > 22) {
         serialNo.style.border = "1px solid red";
-        error.textContent = "Serial number should have 6 to 22 characters";
+        formError.textContent = "Serial number should have 6 to 22 characters";
     }
 }
 
-
+// Purchase detail validation
 var purchase = () => {
     if (required(fname, "first name") == 0) return 0
     if (required(lname, "last name") == 0) return 0
@@ -107,34 +110,75 @@ var purchase = () => {
     if (required(receipt, "receipt number") == 0) return 0
 }
 
-var productdetails = () => {
-    mybutton.disabled = true;
+//For serial number must be unique
+var serialNumber = () => {
+    if (serialNo.value.length == "") {
+        serialError.textContent = "Please enter Serial Number";
+        submit.disabled = true;
+        return 0;
+    }
     fetch('/agent/api/' + serialNo.value)
         .then(response => {
             return response.json();
         })
         .then(json => {
-            itemName.value = json.item[0].name
-            price.value = json.item[0].price
-            payment.value = json.item[0].initialPay
-            balance.value = (json.item[0].price - json.item[0].initialPay)
-            DOP.value = currentdate(0);
-            nDOP.value = currentdate(parseInt(json.item[0].payInterval));
-            nextPay.value = (balance.value/2);
-            console.log(json)
+            if (json.item[0] === undefined) {
+                serialError.textContent = "";
+                formError.textContent = "";
+                submit.disabled = false;
+                return 0;
+            } else {
+                serialError.textContent = "Item with Serial Number '" + serialNo.value + "' already exists";
+                formError.textContent = "Item with Serial Number '" + serialNo.value + "' already exists";
+                submit.disabled = true;
+                return 0;
+            }
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            serialError.textContent = "Something went wrong! Please reload page";
+            console.error(err)
+            return 0;
+        });
+}
+// Item search by serial number
+var productdetails = () => {
+    mybutton.disabled = true;
+    if (serialNo.value.length == "") {
+        serialError.textContent = "Enter a Serial Number to continue";
+        submit.disabled = true;
+        return 0;
+    }
+    fetch('/agent/api/' + serialNo.value)
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            if (json.item[0] === undefined) {
+                serialError.textContent = "Item with serial number '" + serialNo.value + "' not found";
+                return 0;
+            }
+            itemName.value = json.item[0].name;
+            price.value = json.item[0].price;
+            payment.value = json.item[0].initialPay;
+            balance.value = (json.item[0].price - json.item[0].initialPay);
+            payInterval.value = json.item[0].payInterval;
+            DOP.value = currentdate(0);
+            nDOP.value = currentdate(json.item[0].payInterval);
+            nextPay.value = (balance.value / 2);
+        })
+        .catch(err => {
+            serialError.textContent = "Something went wrong, try again";
+            console.error(err)
+            return 0;
+        });
 
     mybutton.disabled = false;
 }
-// Gets date, within t number of weeks
-var currentdate = (t) => {
-    today = new Date();
-    var dd = today.getDate() + (t*7);// translates to a week
-    var mm = today.getMonth() + 1; //January is 0.
-    var yyyy = today.getFullYear();
-
-    if (dd < 10) dd = '0' + dd;
-    if (mm < 10) mm = '0' + mm;
-    return dd+'/'+mm+'/'+yyyy;
+// Installment payment validation
+var installmentpaid = () => {
+    balanceafter();
+    DOP.value = currentdate(0);
+    alert(payInterval.value)
+    nDOP.value = currentdate(payInterval.value);
+    nextPay.value = (balance.value / 2);
 }

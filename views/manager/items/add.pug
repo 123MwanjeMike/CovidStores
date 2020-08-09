@@ -11,6 +11,10 @@ block content
                         fieldset
                             legend Product
                             .control
+                                label Serial Number
+                                input(type="text" placeholder="Serial Number" onmouseout="serialNumber()" id="serialNo" name="serialNo" )
+                                p#serialError.errors
+                            .control
                                 label Image
                                 input(type="file" id="photo" name="photo" )
                             .control
@@ -19,9 +23,6 @@ block content
                             .control
                                 label Make
                                 input(type="text" placeholder="Make" id="make" name="make" )
-                            .control
-                                label Serial Number
-                                input(type="text" placeholder="Serial Number" onmouseout="serialNumber()" id="serialNo" name="serialNo"  )
                             .control
                                 label Color
                                 input(type="text" placeholder="Color" name="color")
@@ -61,7 +62,7 @@ block content
                                 label Pay Interval
                                 input(type="text" placeholder="Interval" id="payInterval" name="payInterval" )
 
-                        p#error
+                        p#error.errors
                         input#submit(type="submit" value="Submit" onmouseover="validate();")
         
                     
