@@ -18,8 +18,7 @@ let agentIn = (req, res, next) => {
 
 //Agent home page
 router.get('/', agentIn, (req, res) => {
-    res.redirect('/agent/items');
-    // res.render('./agent/dashboard', { pageTitle: 'Dashboard', user: req.session.user });
+    res.redirect('/agent/addPurchase');
 });
 
 router.get('/addPurchase', agentIn, async (req, res) => {
@@ -86,8 +85,8 @@ router.post('/installment', agentIn, async (req, res) => {
         await transaction.updateOne(
             { _id: req.body.id },
             {
-                $set: { nextPay: req.body.nextPay, nDOP: req.body.nDOP },
-                $push: { payment: req.body.payment, DOP: req.body.DOP, agent: req.body.agent  }
+                $set: { nextPay: req.body.nextPay, nDOP: req.body.nDOP, balance: req.body.balance },
+                $push: { payment: req.body.payment, DOP: req.body.DOP, agent: req.body.agent }
             }
         )
         res.redirect('/agent/viewPurchases');

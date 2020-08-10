@@ -35,17 +35,17 @@ var firstInstall = () => {
 var balanceafter = () => {
     balance.value = (price.value - payment.value)
 }
-// Gets date, within t number of months
-var currentdate = (t) => {
-    today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + (t + 1); //January is 0.
-    var yyyy = today.getFullYear();
 
-    if (dd < 10) dd = '0' + dd;
-    if (mm < 10) mm = '0' + mm;
-    return dd + '/' + mm + '/' + yyyy;
+// Gets date, within t number of months
+Date.prototype.addMonths = function (m) {
+    var d = new Date(this);
+    var years = Math.floor(m / 12);
+    var months = m - (years * 12);
+    if (years) d.setFullYear(d.getFullYear() + years);
+    if (months) d.setMonth(d.getMonth() + months);
+    return d.toLocaleString("ca-ES");
 }
+
 
 // A function that will do all my data validations system wide
 var required = (input, error, regex) => {
@@ -76,7 +76,7 @@ var required = (input, error, regex) => {
 var validate = () => {
     if (required(make, "make", '^[A-Z]{2}$') === false) return 0
     if (required(photo, "item image") === false) return 0
-    if (required(itemName, "item name", '^[a-zA-Z\s]+$') === false) return 0
+    if (required(itemName, "item name", '^[a-zA-Z]*$') === false) return 0
     if (required(category, "a select category") == 0) return 0
     if (required(serialNo, "a serial number", '^[a-zA-Z0-9_]*$') == 0) return 0
     if (required(numberInStock, "number of items in stock", '^[0-9]+$') == 0) return 0
@@ -92,13 +92,13 @@ var validate = () => {
 
 // Purchase detail validation
 var purchase = () => {
+    // NIN starts with 3 characters in capital letters, followed by numbers and ends with characters in capital letters
+    if (required(NIN, "National ID number", '^[A-Z]{3}[0-9]{7}[A-Z]{3}$') == 0) return 0
     if (required(fname, "first name") == 0) return 0
     if (required(lname, "last name") == 0) return 0
     if (required(address, "address") == 0) return 0
     if (required(tel, "telephone number") == 0) return 0
     if (required(email, "email") == 0) return 0
-    // NIN starts with 3 characters in capital letters, followed by numbers and ends with characters in capital letters
-    if (required(NIN, "National ID number", '^[A-Z]{3}[0-9]{7}[A-Z]{3}$') == 0) return 0
     if (required(ref, "referee number") == 0) return 0
     if (required(serialNo, "serial number") == 0) return 0
     if (required(itemName, "item name", '^[a-zA-Z\s]+$') == 0) return 0
@@ -162,8 +162,8 @@ var productdetails = () => {
             payment.value = json.item[0].initialPay;
             balance.value = (json.item[0].price - json.item[0].initialPay);
             payInterval.value = json.item[0].payInterval;
-            DOP.value = currentdate(0);
-            nDOP.value = currentdate(json.item[0].payInterval);
+            DOP.value = new Date().addMonths(0);
+            nDOP.value = new Date().addMonths(json.item[0].payInterval);
             nextPay.value = (balance.value / 2);
         })
         .catch(err => {
@@ -177,8 +177,7 @@ var productdetails = () => {
 // Installment payment validation
 var installmentpaid = () => {
     balanceafter();
-    DOP.value = currentdate(0);
-    alert(payInterval.value)
-    nDOP.value = currentdate(payInterval.value);
+    DOP.value = new Date().addMonths(0);
+    nDOP.value = new Date().addMonths(payInterval.value);
     nextPay.value = (balance.value / 2);
 }
