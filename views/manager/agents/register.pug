@@ -13,13 +13,13 @@ block content
                                 legend Credentials
                                 .control
                                     label National ID
-                                    input(type="text" placeholder="NIN" name="NIN" required)
+                                    input(type="text" placeholder="eg AAA1234567BBB" name="NIN" id="NIN" required)
                                 .control
                                     label Employee ID
-                                    input(type="text" placeholder="Employee ID" name="empid" required)
+                                    input(type="text" placeholder="eg CS001" name="empid" required)
                                 .control
                                     label Password
-                                    input(type="password" placeholder="Password" name="password" required)
+                                    input(type="password" placeholder="Agent Password" name="password" required)
                                 .control
                                     label Role
                                     select(name="role")
@@ -46,5 +46,6 @@ block content
                                         option
                                             | Female
 
-                            input#submit(type="submit" value="Register" onclick="validate()")
+                            p#error.errors
+                            input#submit(type="submit" value="Register" onmouseover="purchase()")
                         

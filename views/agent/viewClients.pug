@@ -4,37 +4,27 @@ block content
     .card.mb-4
         .card-header
             i.fas.fa-table.mr-1
-            |    Clients
+            |    Client and Balances
 
         .card-body
                 .table-responsive
                     table#dataTable.table.table-bordered(width="100%" cellspacing="0")
                         thead
                             tr                     
-                                th First Name
-                                th Last Name
+                                th Name
                                 th Address
-                                th Telephone
-                                th Email
+                                th Contacts
                                 th National ID
                                 th Referee Tel.
-                        tfoot
-                            tr                     
-                                th First Name
-                                th Last Name
-                                th Address
-                                th Telephone
-                                th Email
-                                th National ID
-                                th Referee Tel.
-
+                                th Balance
                         tbody
                             each detail in Client
                                 tr
-                                    td #{detail.fname}
-                                    td #{detail.lname}
+                                    td #{detail.fname} #{detail.lname}
                                     td #{detail.address}
                                     td #{detail.tel}
-                                    td #{detail.email}
+                                        br
+                                        |   #{detail.email}
                                     td #{detail.NIN}
                                     td #{detail.ref}
+                                    td #{detail.balance}

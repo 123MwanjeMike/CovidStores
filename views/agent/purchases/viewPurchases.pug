@@ -28,34 +28,17 @@ block content
                                 th Next Payment
                                 th Next Pay Date
                                 th Receipt
-                        tfoot
-                            tr     
-                                th New                
-                                th Name
-                                th Address
-                                th Telephone
-                                th Email
-                                th NationalID
-                                th Referee
-                                th Item Name
-                                th Serial NO.
-                                th Price
-                                th Payments
-                                th Date of Pay
-                                th Agent ID
-                                th Balance
-                                th Next Payment
-                                th Next Pay Date
-                                th Receipt
                         tbody
                             each detail in Transaction
                                 tr
                                     td
                                         form(method="get" action='/agent/updateInstallment/'+detail._id)
-                                            button(type="submit") Update
+                                            button(type="submit")                                          
+                                                i.fas.fa-edit.mr-1
                                         br
                                         form(method="get" action='/agent/installment/'+detail._id)
-                                            button(type="submit") Installment
+                                            button(type="submit")                                          
+                                                i.fas.fa-plus.mr-1
 
                                     td #{detail.fname} #{detail.lname}
                                     td #{detail.address}
