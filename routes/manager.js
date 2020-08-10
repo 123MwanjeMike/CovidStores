@@ -192,7 +192,7 @@ router.get('/outStock', managerIn, async (req, res) => {
 router.post('/outStock', managerIn, async (req, res) => {
     try {
         await LTPP.deleteMany({numberInStock: 0});
-        res.redirect('/manager/items');
+        res.redirect('/manager/outStock');
     } catch (error) {
         res.redirect('/500');
         console.log(err);

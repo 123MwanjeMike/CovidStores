@@ -35,6 +35,11 @@ router.post('/addPurchase', agentIn, async (req, res) => {
     try {
         const newTransaction = new transaction(req.body);
         await newTransaction.save();
+        // Reducing number in stock by 1
+        await LTPP.updateOne(
+            { serialNo: req.body.serialNo },
+            { $inc: { numberInStock: -1 } }
+        )
         res.redirect('/agent/viewPurchases');
     } catch (err) {
         res.redirect('/500');
@@ -57,9 +62,9 @@ router.post('/updateInstallment/', agentIn, async (req, res) => {
         await transaction.updateOne(
             { _id: req.body.id },
             {
-                $set: { 
-                   fname: req.body.fname, address: req.body.address,tel: req.body.tel, email: req.body.email,
-                   NIN: req.body.NIN, ref: req.body.ref, itemName: req.body.itemName, serialNo: req.body.serialNo
+                $set: {
+                    fname: req.body.fname, address: req.body.address, tel: req.body.tel, email: req.body.email,
+                    NIN: req.body.NIN, ref: req.body.ref, itemName: req.body.itemName, serialNo: req.body.serialNo
                 },
             }
         )
@@ -131,8 +136,8 @@ router.get('/viewPurchases', agentIn, async (req, res) => {
 // Checking database records
 router.get('/api/:serialNo', async (req, res) => {
     try {
-        let item = await LTPP.find({serialNo: req.params.serialNo});
-        res.json({item});
+        let item = await LTPP.find({ serialNo: req.params.serialNo });
+        res.json({ item });
     } catch (error) {
         console.log(error);
     }
