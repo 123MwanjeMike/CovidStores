@@ -24,7 +24,8 @@ let managerIn = (req, res, next) => {
 
 // Rendering dashboard after successfull login
 router.get('/', managerIn, async (req, res) => {
-    try {
+    try { 
+        // Counting number of required documents in each collection
         let myAgents = await users.find({role: 'Sales Agent'}).countDocuments();
         let myTransactions = await transaction.find().countDocuments();
         let myItems = await LTPP.find().countDocuments();

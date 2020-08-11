@@ -46,7 +46,6 @@ Date.prototype.addMonths = function (m) {
     return d.toLocaleString("ca-ES");
 }
 
-
 // A function that will do all my data validations system wide
 var required = (input, error, regex) => {
     if (input.value.length == "") {
