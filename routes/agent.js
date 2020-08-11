@@ -133,7 +133,7 @@ router.get('/viewPurchases', agentIn, async (req, res) => {
         console.log(error);
     }
 });
-// Checking database records
+// Checking item collection for records with matching serialNo
 router.get('/api/:serialNo', async (req, res) => {
     try {
         let item = await LTPP.find({ serialNo: req.params.serialNo });
