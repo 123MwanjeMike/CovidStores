@@ -27,6 +27,25 @@ block content
                                 th Next Installment
                                 th Next Pay Date
                                 th Receipt NO.
+                        tfoot
+                            tr               
+                                th Name
+                                th Address
+                                th Telephone
+                                th Email
+                                th National ID
+                                th Referee Tel.
+                                th Item Name
+                                th Serial NO.
+                                th Price
+                                th Installments
+                                th Date of Pay
+                                th Recorded by
+                                th Balance
+                                th Next Installment
+                                th Next Pay Date
+                                th Receipt NO.
+
                         tbody
                             each detail in Transaction
                                 tr
@@ -38,11 +57,11 @@ block content
                                     td #{detail.ref}
                                     td #{detail.itemName}
                                     td #{detail.serialNo}
-                                    td #{detail.price}
+                                    td #{detail.price}.00ugx
                                     td
                                         ol
                                             each installment in detail.payment
-                                                li=installment
+                                                li #{installment}.00ugx
                                     td
                                         ol
                                             each date in detail.DOP
@@ -51,7 +70,7 @@ block content
                                         ol
                                             each agent in detail.agent
                                                 li=agent
-                                    td #{detail.balance}
-                                    td #{detail.nextPay}
+                                    td #{detail.balance}.00ugx
+                                    td #{detail.nextPay}.00ugx
                                     td #{detail.nDOP}
                                     td #{detail.receipt}   

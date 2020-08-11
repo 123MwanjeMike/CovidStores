@@ -23,8 +23,20 @@ let managerIn = (req, res, next) => {
 }
 
 // Rendering dashboard after successfull login
-router.get('/', managerIn, (req, res) => {
-    res.render('./manager/dashboard', { pageTitle: 'Manager', user: req.session.user });
+router.get('/', managerIn, async (req, res) => {
+    try {
+        let myAgents = await users.find({role: 'Sales Agent'}).countDocuments();
+        let myTransactions = await transaction.find().countDocuments();
+        let myItems = await LTPP.find().countDocuments();
+        let myOut = await LTPP.find({ numberInStock: 0 }).countDocuments();
+        res.render('./manager/dashboard', {
+            pageTitle: 'Manager', user: req.session.user,
+            agents: myAgents, transactions: myTransactions, items: myItems, outStock: myOut,
+        });
+    } catch (error) {
+        res.redirect('/500');
+        console.log(error);
+    }
 });
 
 /////////////////// WORKING WITH AGENTS //////////////////////////////
@@ -70,7 +82,7 @@ router.post('/updateAgent', managerIn, async (req, res) => {
             { _id: req.body.id },
             {
                 $set: {
-                    NIN: req.body.NIN, empid: req.body.empid,
+                    NIN: req.body.NIN, empid: req.body.empid, role: req.body.role,
                     fname: req.body.fname, lname: req.body.lname, dob: req.body.dob, gender: req.body.gender,
                     password: req.body.password
                 }
@@ -191,7 +203,7 @@ router.get('/outStock', managerIn, async (req, res) => {
 // Removing all out of stock items
 router.post('/outStock', managerIn, async (req, res) => {
     try {
-        await LTPP.deleteMany({numberInStock: 0});
+        await LTPP.deleteMany({ numberInStock: 0 });
         res.redirect('/manager/outStock');
     } catch (error) {
         res.redirect('/500');
