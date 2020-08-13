@@ -1,0 +1,39 @@
+extends layout.pug
+
+block content
+    .card.mb-4
+        .card-header
+            i.fas.fa-table.mr-1
+            |    Client and Balances
+
+        .card-body
+                .table-responsive
+                    table#dataTable.table.table-bordered(width="100%" cellspacing="0")
+                        thead
+                            tr                     
+                                th Name
+                                th Address
+                                th Contacts
+                                th National ID
+                                th Referee Tel.
+                                th Balance
+                        tfoot
+                            tr                     
+                                th Name
+                                th Address
+                                th Contacts
+                                th National ID
+                                th Referee Tel.
+                                th Balance
+
+                        tbody
+                            each detail in Client
+                                tr
+                                    td #{detail.fname} #{detail.lname}
+                                    td #{detail.address}
+                                    td #{detail.tel}
+                                        br
+                                        |   #{detail.email}
+                                    td #{detail.NIN}
+                                    td #{detail.ref}
+                                    td #{detail.balance}.00ugx

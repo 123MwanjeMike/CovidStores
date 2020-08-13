@@ -1,0 +1,33 @@
+extends layout.pug
+
+block content
+    h2.section-header=page
+        .store-item
+            each detail in product
+                .product
+                    img.product-image.left(src="/"+detail.photo )
+                    .right
+                        span.product-details
+                            b Name: 
+                        span.product-details #{detail.name}
+                        br
+                        span.product-details
+                            b Color: 
+                        span.product-details #{detail.color}
+                        br
+                        span.product-details
+                            b Price: 
+                        span.product-details #{detail.price}
+                        br
+                        span.product-details
+                            b Make: 
+                        span.product-details #{detail.make}
+                        br
+                        span.product-details
+                            b SN: 
+                        span.product-details #{detail.serialNo}
+                        br
+                        span.product-details
+                            b Description: 
+                        span.product-details #{detail.description}
+                

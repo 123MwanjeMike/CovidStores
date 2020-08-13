@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")        
+        title Covid Stores | #{page}
+        link(rel="stylesheet" href="/css/style.css")
+    body
+        div#page-container
+            header.main-header
+                nav.main-nav.nav
+                    h1.band-name
+                        a(href="/") Covid Stores
+                    ul
+                        li
+                            a(href="/Categories/Furniture") Furniture
+                        li
+                            a(href="/Categories/TVs") TV sets
+                        li
+                            a(href="/Categories/FitnessKits") Fitness Kits
+                        li
+                            a(href="/Categories/HomeTheatres") Home Theatres
+                        li
+                            a(href="/Categories/Others") More
+                            
+            section.container.content-section
+                block content
+
+            footer.main-footer
+                .container.main-footer-container
+                    h2 Covid Stores
+                    ul.nav.footer-nav
+                        li
+                            a(href="/login") Login    
+                        li.copyright  
+                            a(href="https://123mwanjemike.github.io/portfolio/" target="_blank") &copy; Mike Mwanje 2020

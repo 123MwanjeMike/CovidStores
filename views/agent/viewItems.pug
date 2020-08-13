@@ -1,0 +1,56 @@
+extends layout.pug
+
+block content
+    .card.mb-4
+        .card-header
+            i.fas.fa-table.mr-1
+            |    LTTP Items
+
+        .card-body
+                .table-responsive
+                    table#dataTable.table.table-bordered(width="100%" cellspacing="0")
+                        thead
+                            tr                     
+                                th Photo
+                                th Name
+                                th Make
+                                th Serial Number
+                                th Color
+                                th Description
+                                th Category
+                                th Date of Entry
+                                th Stock
+                                th Price
+                                th Initial Pay
+                                th Interval (Months)
+                        tfoot
+                            tr                     
+                                th Photo
+                                th Name
+                                th Make
+                                th Serial Number
+                                th Color
+                                th Description
+                                th Category
+                                th Date of Entry
+                                th Stock
+                                th Price
+                                th Initial Pay
+                                th Interval (Months)
+                                
+                        tbody
+                            each item in LTPP
+                                tr
+                                    td 
+                                        img.item-image(src=""+item.photo)
+                                    td #{item.name}
+                                    td #{item.make}
+                                    td #{item.serialNo}
+                                    td #{item.color}
+                                    td #{item.description}
+                                    td #{item.category}
+                                    td #{item.DOE}
+                                    td #{item.numberInStock}
+                                    td #{item.price}
+                                    td #{item.initialPay}
+                                    td #{item.payInterval}

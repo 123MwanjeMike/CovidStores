@@ -1,0 +1,79 @@
+extends ../layout.pug
+
+block content
+    .card.mb-4
+        .card-header
+            i.fas.fa-plus.mr-1
+            |    New Purchase:
+            .card-body            
+            #inner
+                div
+                    form(method="POST" action="/agent/addPurchase")
+                        fieldset
+                            legend Client Information
+                            .control
+                                label First name
+                                input(type="text" placeholder="First name" name="fname" id="fname")
+                            .control
+                                label Last name
+                                input(type="text" placeholder="Last name" id="lname" name="lname")
+                            .control
+                                label Physical Address
+                                input(type="text" placeholder="Luwum Street Plot 32" name="address" id="address")
+                            .control
+                                label Telephone Number
+                                input(type="text" placeholder="Telephone" name="tel" id="tel")
+                            .control
+                                label Email
+                                input(type="text" placeholder="Email" name="email" id="email")
+                            .control
+                                label National ID
+                                input(type="text" placeholder="National ID NIN" name="NIN" id="NIN")
+                            .control
+                                label Referee Number
+                                input(type="text" placeholder="Referee tel" name="ref" id="ref")
+
+                        fieldset
+                            legend Item Details
+                            .control
+                                label Serial Number
+                                input(list="serialnumbers" placeholder="Search to autofill" name="serialNo" id="serialNo")
+                                datalist(id="serialnumbers")
+                                    each item in LTPP
+                                        option(value=item.serialNo)
+                                button(type="button" onclick="productdetails()" id="mybutton") Search
+                                p#serialError.errors
+
+                            .control
+                                label Item name  
+                                input(type="text" placeholder="Item name" id="itemName" name="itemName")
+                            .control
+                                label Price
+                                input(type="text" placeholder="Price" name="price" id="price")
+                            
+                        fieldset
+                            legend Payment Details
+                            .control
+                                label Initial Pay
+                                input(type="text" placeholder="Initial Pay" onmouseout="balanceafter()" name="payment" id="payment")
+                            .control
+                                label Date of Pay
+                                input(type="text" name="DOP" id="DOP" readonly)
+                            .control
+                                label Balance
+                                input(type="text" placeholder="Balance" name="balance" id="balance" readonly)
+                            .control
+                                label Next Installment
+                                input(type="text" placeholder="Next payable amount" name="nextPay" id="nextPay" readonly)
+                            .control
+                                label Date of next payment
+                                input(type="text" name="nDOP" id="nDOP" readonly)
+                            .control
+                                label Purchase Receipt
+                                input(type="text" placeholder="Receipt Number" name="receipt" id="receipt")
+
+                                input(type="hidden" name="agent" value=user.empid)
+                                input(type="hidden" name="payInterval" id="payInterval")
+                        p#error.errors
+                        input#submit(type="submit" value="Submit" onmouseover="purchase()")
+                    
