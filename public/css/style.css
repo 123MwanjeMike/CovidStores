@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+    color: #555;
+    list-style: none;
+    text-decoration: none;
+}
+
+html, body {
+    margin: 0px;
+    padding: 0;
+}
+
+.nav ul {
+    margin: 0;
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav a {
+    display: inline-block;
+    padding: .5rem;
+    color: #fff;
+}
+
+.nav a:hover {
+    background-color: rgba(255, 255, 255, .3);
+}
+
+.main-nav {
+    margin-top: -1%;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: lighter;
+    border-bottom: 1px solid rgba(186, 218, 112, 0.3);
+}
+
+.main-nav li {
+    padding: 0 5%;
+}
+
+.main-header {
+    background-color: rgb(226, 91, 50);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    min-height: 25vh;
+}
+
+.band-name {
+    margin: 1rem;
+    text-align: center;
+    font-size: 3em;
+    font-weight: normal;
+    color: #fff;
+}
+
+.band-name-large {
+    font-size: 5em;
+}
+
+.content-section {
+    margin: 1em;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.section-header {
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.about-band-image {
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin: 15px 25px;
+    border-radius: 50%;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+section {
+    padding-bottom: 5rem;
+}
+
+.main-footer {
+    background-color: #212529;
+    color: #fff;
+    padding: .25em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.main-footer-container {
+    display: flex;
+    align-items: center;
+}
+
+.main-footer-container ul {
+    flex-grow: 1;
+    text-align: end;
+}
+
+.main-footer-container .fa {
+    color: #fff;
+    height: 30px;
+    width: 30px;
+}
+
+.footer-nav li {
+    padding: 0 .5em;
+}
+
+.store-item {
+    margin: 1%;
+}
+
+.store-item-title {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.store-item-image {
+    height: 250px;
+    width: 250px;
+}
+
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.75rem;
+    margin-left: -0.75rem;
+}
+
+.left {
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.right {
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-align: left;
+    font-size: 50%;
+}
+
+.product-image {
+    height: 70%;
+    width: 70%;
+    min-height: 250px;
+    min-width: 250px;
+}
+
+.product-details {
+    color: #333;
+}
+
+.store-item-details {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.store-item-price {
+    flex-grow: 1;
+    color: #333;
+    font-weight: 600;
+}
+
+.store-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.message {
+    font-size: 0.5em;
+    color: rgb(228, 23, 23);
+}
+
+.special-page {
+    text-align: center;
+}
+
+.special-page-label {
+    font-size: 0.5em;
+    color: #333;
+}
+
+.submit {
+    color: rgb(226, 91, 50);
+    font-weight: 1000;
+}
+
+.copyright{
+    font-size: 10px;
+}

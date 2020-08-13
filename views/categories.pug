@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    h2.section-header=page
+    .store-items
+        each item in category
+            .store-item
+                a(href='/product?name='+item.name+'&id='+item._id)
+                    img.store-item-image(src="/"+item.photo )
+                span.store-item-title
+                .store-item-details
+                    span.store-item-price #{item.name}
+                    span.store-item-price #{item.price}
