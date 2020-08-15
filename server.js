@@ -22,7 +22,7 @@ app.use('/agent', agent);
 app.use('/manager', manager);
 
 //Making database connection to covidStores
-mongoose.connect('mongodb+srv://dbMike:dbUserM1ke@cluster0.i3mo9.azure.mongodb.net/covidStores?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
