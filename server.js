@@ -8,7 +8,6 @@ const agent = require('./routes/agent');
 const manager = require('./routes/manager');
 const app = express();
 
-//database
 require('dotenv').config();
 const mongoose = require('mongoose');
 
@@ -23,7 +22,7 @@ app.use('/agent', agent);
 app.use('/manager', manager);
 
 //Making database connection to covidStores
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect('mongodb+srv://dbMike:dbUserM1ke@cluster0.i3mo9.azure.mongodb.net/covidStores?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
