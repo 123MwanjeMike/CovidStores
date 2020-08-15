@@ -9,6 +9,6 @@ The System enables:
 -Sales Agents record purchases and add installments of the customers
 -Manager to add items and Sales Agents, and view all purchase details
 
-![preview](https://github.com/123MwanjeMike/CovidStores/blob/deployed/preview.png?raw=true)
+![preview](https://github.com/123MwanjeMike/CovidStores/blob/master/preview.JPG?raw=true)
 
 Live Preview: [Covid Stores](https://covidstores.herokuapp.com/)
