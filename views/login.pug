@@ -2,14 +2,14 @@ extends layout.pug
 
 block content
     h2.section-header=page
-        .store-item
-            form(method="POST" action='/login')
-                p.message=message
-                div.special-page
-                    label.special-page-label Employee: 
-                    input(type="text" placeholder="Enter Employee ID" name="empid")
-                    br
-                    label.special-page-label Password: 
-                    input(type="password" placeholder="Enter Password" name="password")
-                    br
-                    button.submit(type="submit") Login
+    .store-item
+        form(method="POST" action='/login')
+            p.message=message
+            div.special-page
+                label.special-page-label Employee: 
+                input(type="text" placeholder="Enter Employee ID" name="empid")
+                br
+                label.special-page-label Password: 
+                input(type="password" placeholder="Enter Password" name="password")
+                br
+                button.submit(type="submit") Login

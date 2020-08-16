@@ -6,8 +6,8 @@ block content
         each item in category
             .store-item
                 a(href='/product?name='+item.name+'&id='+item._id)
-                    img.store-item-image(src="/"+item.photo )
+                    img.store-item-image(src="/"+item.photo alt=item.name)
                 span.store-item-title
                 .store-item-details
                     span.store-item-price #{item.name}
-                    span.store-item-price #{item.price}
+                    span.store-item-price #{item.price}/=
