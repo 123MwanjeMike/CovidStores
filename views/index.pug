@@ -5,7 +5,7 @@ block content
     .store-items
         each item in category
             .store-item
-                a(href='/product?name='+item.name+'&id='+item._id)
+                a(href='/product?id='+item._id)
                     img.store-item-image(src="/"+item.photo alt=item.name)
                 span.store-item-title
                 .store-item-details
