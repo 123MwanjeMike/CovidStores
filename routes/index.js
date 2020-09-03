@@ -45,7 +45,8 @@ router.get('/Categories/:category', async (req, res) => {
 router.get('/product', async (req, res) => {
     try {
         let details = await LTPP.find({ _id: req.query.id });
-        res.render('product', { page: 'yyyy', product: details })
+        let name = req.query.name
+        res.render('product', { page: name, product: details })
     } catch (err) {
         res.redirect('/500');
         console.log(err);
