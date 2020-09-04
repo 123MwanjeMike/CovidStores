@@ -5,7 +5,7 @@ block content
         .store-item
             each detail in product
                 .product
-                    img.product-image.left(src="/"+detail.photo alt=item.name)
+                    img.product-image.left(src="/"+detail.photo alt=detail.name)
                     .right
                         span.product-details
                             b Name: 
