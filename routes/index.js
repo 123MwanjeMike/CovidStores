@@ -8,12 +8,15 @@ const expressSession = require('express-session')({
     saveUninitialized: false
 });
 const passport = require('passport');
+const csrf = require("csurf");
+
 const router = express.Router();
 const users = mongoose.model('users');
 const LTPP = mongoose.model('LTPP');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(expressSession);
+router.use(csrf({ cookie: true }));
 router.use(passport.initialize());
 router.use(passport.session());
 passport.use(users.createStrategy());
