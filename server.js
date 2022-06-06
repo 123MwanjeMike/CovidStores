@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit')
 const passport = require('passport');
 require("./models/user");
 require("./models/item");
@@ -8,12 +9,21 @@ const agent = require('./routes/agent');
 const manager = require('./routes/manager');
 const app = express();
 
+// set up rate limiter: maximum of twenty requests every minute
+const limiter = rateLimit({
+    windowMs: 1 * 10 * 1000, // 1 minute
+    max: 20
+});
+
+// apply rate limiter to all requests
+app.use(limiter);
+
 require('dotenv').config();
 const mongoose = require('mongoose');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
-app.use('/public' , express.static('public'));
+app.use('/public', express.static('public'));
 // Serving my static files
 app.use(express.static('public'));
 // Serving my routes
