@@ -1,5 +1,4 @@
 const express = require('express');
-const RateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');//Requiring mongoose
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -13,14 +12,6 @@ const transaction = mongoose.model('transaction');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use('/public', express.static('public'));
-
-let limiter = new RateLimit({
-  windowMs: 1*60*1000, // 1 minute
-  max: 5
-});
-
-// apply rate limiter to all requests
-app.use(limiter);
 
 let managerIn = (req, res, next) => {
     if (!req.user) {
