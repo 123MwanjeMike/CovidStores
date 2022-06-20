@@ -100,7 +100,7 @@ var purchase = () => {
     if (required(email, "email") == 0) return 0
     if (required(ref, "referee number") == 0) return 0
     if (required(serialNo, "serial number") == 0) return 0
-    if (required(itemName, "item name", '^[a-zA-Z\s]+$') == 0) return 0
+    if (required(itemName, "item name", '^[a-zA-Z]+$') == 0) return 0
     if (required(price, "price", '^[0-9]+$') == 0) return 0
     if (required(payment, "payment", '^[0-9]+$') == 0) return 0
     if (required(DOP, "date of payment") == 0) return 0
