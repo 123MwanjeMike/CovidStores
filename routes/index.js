@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 require('passport-local-mongoose');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session')({
-    secret: 'secret',
+    secret: `${process.env.SECRET}`,
     resave: false,
     saveUninitialized: false
 });
