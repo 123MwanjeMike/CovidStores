@@ -31,7 +31,10 @@ router.get('/addPurchase', agentIn, async (req, res) => {
     }
 });
 // Saving purchase data into the database
-router.post('/addPurchase', agentIn, async (req, res) => {
+router.post('/addPurchase',
+    body('serialNo').trim().escape(),
+    agentIn,
+    async (req, res) => {
     try {
         const newTransaction = new transaction(req.body);
         await newTransaction.save();
@@ -57,7 +60,10 @@ router.get('/updateInstallment/:id', agentIn, async (req, res) => {
         console.log(error);
     }
 });
-router.post('/updateInstallment/', agentIn, async (req, res) => {
+router.post('/updateInstallment/', 
+    body('id').trim().escape(),
+    agentIn,
+    async (req, res) => {
     try {
         await transaction.updateOne(
             { _id: req.body.id },
@@ -85,7 +91,10 @@ router.get('/installment/:id', agentIn, async (req, res) => {
         console.log(error);
     }
 });
-router.post('/installment', agentIn, async (req, res) => {
+router.post('/installment', 
+    body('id').trim().escape(),
+    agentIn, 
+    async (req, res) => {
     try {
         await transaction.updateOne(
             { _id: req.body.id },
