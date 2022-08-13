@@ -8,7 +8,6 @@ const expressSession = require('express-session')({
     saveUninitialized: false
 });
 const passport = require('passport');
-const csrf = require("csurf");
 
 const router = express.Router();
 const users = mongoose.model('users');
@@ -21,7 +20,6 @@ router.use(passport.session());
 passport.use(users.createStrategy());
 passport.serializeUser(users.serializeUser());
 passport.deserializeUser(users.deserializeUser());
-router.use(csrf({ cookie: true }));
 
 // Home page
 router.get('/', async (req, res) => {
