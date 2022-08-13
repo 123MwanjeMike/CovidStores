@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose')
 const router = express.Router();
 const bodyParser = require('body-parser');
+const { body } = require('express-validator');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use('/public', express.static('public'));
@@ -33,8 +34,7 @@ router.get('/addPurchase', agentIn, async (req, res) => {
 // Saving purchase data into the database
 router.post('/addPurchase',
     body('serialNo').trim().escape(),
-    agentIn,
-    async (req, res) => {
+    agentIn,async (req, res) => {
     try {
         const newTransaction = new transaction(req.body);
         await newTransaction.save();
