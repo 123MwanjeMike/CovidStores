@@ -16,10 +16,10 @@ const LTPP = mongoose.model('LTPP');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(expressSession);
-router.use(csrf({ cookie: true }));
 router.use(passport.initialize());
 router.use(passport.session());
 passport.use(users.createStrategy());
+router.use(csrf({ cookie: true }));
 
 passport.serializeUser(users.serializeUser());
 passport.deserializeUser(users.deserializeUser());
