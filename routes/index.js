@@ -19,10 +19,9 @@ router.use(expressSession);
 router.use(passport.initialize());
 router.use(passport.session());
 passport.use(users.createStrategy());
-router.use(csrf({ cookie: true }));
-
 passport.serializeUser(users.serializeUser());
 passport.deserializeUser(users.deserializeUser());
+router.use(csrf({ cookie: true }));
 
 // Home page
 router.get('/', async (req, res) => {
