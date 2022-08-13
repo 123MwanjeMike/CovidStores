@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const { body } = require('express-validator');
 
 const router = express.Router();
 const users = mongoose.model('users');
@@ -42,9 +43,11 @@ router.get('/', managerIn, async (req, res) => {
 
 /////////////////// WORKING WITH AGENTS //////////////////////////////
 // Handling register agent request
-router.get('/registerAgent', managerIn, (req, res) => {
-    res.render('./manager/agents/register', { pageTitle: 'Register Agent', user: req.session.user });
-});
+router.get('/registerAgent',
+    body('id').trim().escape(),
+    managerIn,
+    (req, res) => res.render('./manager/agents/register', { pageTitle: 'Register Agent', user: req.session.user })
+);
 // Saving new agent to database
 router.post('/registerAgent', managerIn, async (req, res) => {
     try {
@@ -67,7 +70,10 @@ router.get('/agents', managerIn, async (req, res) => {
     };
 });
 // Working on edit agent details request
-router.get('/updateAgent', managerIn, async (req, res) => {
+router.get('/updateAgent', 
+    body('id').trim().escape(),
+    managerIn, 
+    async (req, res) => {
     try {
         let agentDetails = await users.find({ _id: req.query.id })
         res.render('manager/agents/update', { pageTitle: 'Update Agents', user: req.session.user, agent: agentDetails })
@@ -77,7 +83,10 @@ router.get('/updateAgent', managerIn, async (req, res) => {
     }
 });
 // Updating agent information in database
-router.post('/updateAgent', managerIn, async (req, res) => {
+router.post('/updateAgent', 
+    body('id').trim().escape(),
+    managerIn,
+    async (req, res) => {
     try {
         await users.updateOne(
             { _id: req.body.id },
@@ -96,7 +105,10 @@ router.post('/updateAgent', managerIn, async (req, res) => {
     }
 });
 //Deleting agent record in the users collection(database)
-router.post('/removeAgent', managerIn, async (req, res) => {
+router.post('/removeAgent', 
+    body('id').trim().escape(),
+    managerIn,
+    async (req, res) => {
     try {
         await users.deleteOne({ _id: req.body.id })
         res.redirect('/manager/agents');
@@ -148,7 +160,10 @@ router.get('/items', managerIn, async (req, res) => {
     };
 });
 // Working on the edit LTPP product request
-router.get('/updateItem', managerIn, async (req, res) => {
+router.get('/updateItem', 
+    body('id').trim().escape(),
+    managerIn,
+    async (req, res) => {
     try {
         let itemDetails = await LTPP.find({ _id: req.query.id })
         res.render('manager/items/update', { pageTitle: 'Update Items', user: req.session.user, LTPP: itemDetails })
@@ -158,7 +173,10 @@ router.get('/updateItem', managerIn, async (req, res) => {
     }
 });
 // Updating Item details in the database
-router.post('/updateItem', managerIn, upload.single('photo'), async (req, res) => {
+router.post('/updateItem', 
+    body('id').trim().escape(),
+    managerIn, upload.single('photo'),
+    async (req, res) => {
     try {
         await LTPP.updateOne(
             { _id: req.body.id },
@@ -178,7 +196,10 @@ router.post('/updateItem', managerIn, upload.single('photo'), async (req, res) =
     }
 });
 // Removing item from display
-router.post('/removeItem', managerIn, async (req, res) => {
+router.post('/removeItem',
+    body('id').trim().escape(),
+    managerIn, 
+    async (req, res) => {
     // Deleting the image from file location and deleting details from database
     fs.unlink(req.body.photo, async (err) => {
         if (err) throw err
