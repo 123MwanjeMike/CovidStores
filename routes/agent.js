@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose')
 const router = express.Router();
 const bodyParser = require('body-parser');
+const { body } = require('express-validator');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use('/public', express.static('public'));
