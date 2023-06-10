@@ -1,3 +1,5 @@
+### This repo is nolonger being actively maintained
+
 # Covid Stores
 In a bid improve on the livelihood of its customers who might not be
 able pay wholesomely for the items that are expensive but vital and
